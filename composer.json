@@ -1,0 +1,16 @@
+{
+    "name": "fludio/doctrine-entity-factory-bundle",
+    "type": "symfony-bundle",
+    "description": "An entity factory for Doctrine2 and Symfony2",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Thomas Uhlmann",
+            "email": "tho.uhlmann@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": { "Fludio\\FactoryBundle\\": "" }
+    },
+    "require": {}
+}
