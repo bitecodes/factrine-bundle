@@ -4,6 +4,7 @@ namespace Fludio\DoctrineEntityFactoryBundle\Factory\Util;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker\Factory;
+use Fludio\DoctrineEntityFactoryBundle\Factory\Metadata\ConfigProvider;
 use Symfony\Component\Security\Core\Authorization\ExpressionLanguage;
 use Symfony\Component\Yaml\Parser;
 
@@ -25,28 +26,31 @@ class EntityBuilder
      * @var Parser
      */
     private $yaml;
+    /**
+     * @var ConfigProvider
+     */
+    private $configProvider;
 
     /**
      * @param ObjectManager $om
      * @param Factory $faker
-     * @param Parser $yaml
+     * @param ConfigProvider $configProvider
      */
-    public function __construct(ObjectManager $om, Factory $faker, Parser $yaml)
+    public function __construct(ObjectManager $om, Factory $faker, ConfigProvider $configProvider)
     {
         $this->om = $om;
         $this->faker = $faker->create();
-        $this->yaml = $yaml;
+        $this->configProvider = $configProvider;
     }
 
     /**
      * @param $entity
      * @param array $params
      * @param null $callback
-     * @param string $path
      * @return array|mixed
      * @throws Exception
      */
-    public function createEntity($entity, $params = [], $callback = null, $path = '/Users/Thomas/code/doctrine-entity-factory/src/Fludio/DoctrineEntityFactoryBundle/Resources/factory/user.yml')
+    public function createEntity($entity, $params = [], $callback = null)
     {
         $params = $this->prepareParams($params);
 
@@ -57,7 +61,7 @@ class EntityBuilder
 
         $meta = $this->om->getClassMetadata($entity);
 
-        $config = $this->yaml->parse(file_get_contents($path));
+        $config = $this->configProvider->getConfig();
 
         $instance = new $entity;
 

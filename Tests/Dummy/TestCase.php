@@ -3,6 +3,8 @@
 namespace Fludio\DoctrineEntityFactoryBundle\Tests\Dummy;
 
 use Fludio\DoctrineEntityFactoryBundle\Factory\Factory;
+use Fludio\DoctrineEntityFactoryBundle\Factory\Metadata\ConfigLoader;
+use Fludio\DoctrineEntityFactoryBundle\Factory\Metadata\YamlConfigProvider;
 use Fludio\DoctrineEntityFactoryBundle\Factory\Util\EntityBuilder;
 use PHPUnit_Framework_Error;
 use Doctrine\ORM\EntityManager;
@@ -42,7 +44,13 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
 
         $this->em = $this->testDb->createEntityManager();
 
-        $this->factory = new Factory($this->em, new EntityBuilder($this->em, new \Faker\Factory(), new Parser()));
+        $directories = [
+            __DIR__ . '/Config'
+        ];
+
+        $faker = new \Faker\Factory();
+        $configProvider = new YamlConfigProvider(new Parser(), new ConfigLoader($directories));
+        $this->factory = new Factory($this->em, new EntityBuilder($this->em, $faker, $configProvider));
     }
 
     /**

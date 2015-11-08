@@ -35,25 +35,30 @@ class Factory
      * @param $entity
      * @param array $params
      * @param \Closure|null $callback
-     * @param string $path
      * @return array|mixed
      */
-    public function make($entity, array $params = [], \Closure $callback = null, $path = '/Users/Thomas/code/doctrine-entity-factory/src/Fludio/DoctrineEntityFactoryBundle/Resources/factory/user.yml')
+    public function make($entity, array $params = [], \Closure $callback = null)
     {
         $result = [];
         $loops = $this->times;
         $this->times = 1;
 
         for($i = 1; $i <= $loops; $i++) {
-            $result[] = $this->entityBuilder->createEntity($entity, $params, $callback, $path);
+            $result[] = $this->entityBuilder->createEntity($entity, $params, $callback);
         }
 
         return count($result) > 1 ? $result : array_pop($result);
     }
 
-    public function create($entity, array $params = [], \Closure $callback = null, $path = '/Users/Thomas/code/doctrine-entity-factory/src/Fludio/DoctrineEntityFactoryBundle/Resources/factory/user.yml')
+    /**
+     * @param $entity
+     * @param array $params
+     * @param \Closure|null $callback
+     * @return array|mixed
+     */
+    public function create($entity, array $params = [], \Closure $callback = null)
     {
-        $result = $this->make($entity, $params, $callback, $path);
+        $result = $this->make($entity, $params, $callback);
 
         if(is_array($result)) {
             foreach($result as $entity) {

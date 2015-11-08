@@ -21,8 +21,25 @@ class FludioDoctrineEntityFactoryExtension extends Extension
     {
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
-
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+
+        $bundles = $container->getParameter('kernel.bundles');
+
+        // directories
+        $directories = [];
+        if ($config['auto_detection']) {
+            foreach ($bundles as $name => $class) {
+                $ref = new \ReflectionClass($class);
+                $directories[$ref->getNamespaceName()] = dirname($ref->getFileName()).'/Resources/config/entity-factory';
+            }
+        }
+
+        $defs = $container->getDefinitions();
+        
+        $container
+            ->getDefinition('fludio_doctrine_entity_factory.metadata.config_loader')
+            ->replaceArgument(0, $directories);
+
     }
 }

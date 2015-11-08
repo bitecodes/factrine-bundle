@@ -22,9 +22,18 @@ services:
         arguments:
             - @doctrine.orm.entity_manager
             - @faker
-            - @yaml_parser
+            - @fludio_doctrine_entity_factory.metadata.yaml_config_provider
 
     fludio_factory.schema_reader:
         class: Fludio\DoctrineEntityFactoryBundle\Factory\Util\SchemaReader
         arguments:
             - @doctrine.orm.entity_manager
+
+    fludio_doctrine_entity_factory.metadata.config_loader:
+        class: Fludio\DoctrineEntityFactoryBundle\Factory\Metadata\ConfigLoader
+        public: false
+        arguments: [{}]
+
+    fludio_doctrine_entity_factory.metadata.yaml_config_provider:
+        class: Fludio\DoctrineEntityFactoryBundle\Factory\Metadata\YamlConfigProvider
+        arguments: [ @yaml_parser, @fludio_doctrine_entity_factory.metadata.config_loader ]
