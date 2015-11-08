@@ -1,0 +1,16 @@
+Fludio\DoctrineEntityFactoryBundle\Tests\Dummy\TestEntity\User:
+    firstName: faker.firstName
+    lastName: faker.lastName
+    email: faker.email
+    dob: faker.dateTimeBetween('-50 years', '-20 years')
+    address: Fludio\DoctrineEntityFactoryBundle\Tests\Dummy\TestEntity\Address
+    hobbies: Fludio\DoctrineEntityFactoryBundle\Tests\Dummy\TestEntity\Hobby
+
+Fludio\DoctrineEntityFactoryBundle\Tests\Dummy\TestEntity\Address:
+    street: faker.streetAddress
+    city: faker.city
+    zip: faker.postcode
+
+Fludio\DoctrineEntityFactoryBundle\Tests\Dummy\TestEntity\Hobby:
+    name: faker.randomElement(['guitar', 'books', 'cinema'])
+    priority: faker.numberBetween(0, 100)

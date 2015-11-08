@@ -1,0 +1,30 @@
+services:
+    yaml_parser:
+        class: Symfony\Component\Yaml\Parser
+        public: false
+
+    yaml_dumper:
+        class: Symfony\Component\Yaml\Dumper
+
+    faker:
+        class: Faker\Factory
+        public: false
+
+    fludio_factory.factory:
+        class: Fludio\DoctrineEntityFactoryBundle\Factory\Factory
+        arguments:
+            - @doctrine.orm.entity_manager
+            - @fludio_factory.entity_builder
+
+    fludio_factory.entity_builder:
+        class: Fludio\DoctrineEntityFactoryBundle\Factory\Util\EntityBuilder
+        public: false
+        arguments:
+            - @doctrine.orm.entity_manager
+            - @faker
+            - @yaml_parser
+
+    fludio_factory.schema_reader:
+        class: Fludio\DoctrineEntityFactoryBundle\Factory\Util\SchemaReader
+        arguments:
+            - @doctrine.orm.entity_manager
