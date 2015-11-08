@@ -9,8 +9,16 @@
             "email": "tho.uhlmann@gmail.com"
         }
     ],
-    "autoload": {
-        "psr-4": { "Fludio\\FactoryBundle\\": "" }
+    "require": {
+        "doctrine/orm": "^2.4.8",
+        "fzaninotto/faker": "^1.5",
+        "symfony/console": "2.7.*",
+        "symfony/yaml": "2.7.*"
     },
-    "require": {}
+    "autoload": {
+        "psr-0": {
+            "Fludio\\DoctrineEntityFactoryBundle\\": ""
+        }
+    },
+    "target-dir": "Fludio/DoctrineEntityFactoryBundle"
 }
