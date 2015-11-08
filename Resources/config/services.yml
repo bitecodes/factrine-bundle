@@ -21,8 +21,8 @@ services:
         public: false
         arguments:
             - @doctrine.orm.entity_manager
-            - @faker
             - @fludio_doctrine_entity_factory.metadata.yaml_config_provider
+            - [@fludio_doctrine_entity_factory.factory_data_provider.faker_data_provider]
 
     fludio_factory.schema_reader:
         class: Fludio\DoctrineEntityFactoryBundle\Factory\Util\SchemaReader
@@ -37,3 +37,6 @@ services:
     fludio_doctrine_entity_factory.metadata.yaml_config_provider:
         class: Fludio\DoctrineEntityFactoryBundle\Factory\Metadata\YamlConfigProvider
         arguments: [ @yaml_parser, @fludio_doctrine_entity_factory.metadata.config_loader ]
+
+    fludio_doctrine_entity_factory.factory_data_provider.faker_data_provider:
+        class: Fludio\DoctrineEntityFactoryBundle\Factory\DataProvider\FakerDataProvider

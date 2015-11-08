@@ -3,10 +3,9 @@
 namespace Fludio\DoctrineEntityFactoryBundle\Factory\Util;
 
 use Doctrine\Common\Persistence\ObjectManager;
-use Faker\Factory;
+use Fludio\DoctrineEntityFactoryBundle\Factory\DataProvider\DataProvider;
 use Fludio\DoctrineEntityFactoryBundle\Factory\Metadata\ConfigProvider;
 use Symfony\Component\Security\Core\Authorization\ExpressionLanguage;
-use Symfony\Component\Yaml\Parser;
 
 /**
  * Class EntityBuilder
@@ -17,30 +16,30 @@ class EntityBuilder
     /**
      * @var ObjectManager
      */
-    private $om;
-    /**
-     * @var Factory
-     */
-    private $faker;
-    /**
-     * @var Parser
-     */
-    private $yaml;
+    protected $om;
     /**
      * @var ConfigProvider
      */
-    private $configProvider;
+    protected $configProvider;
+    /**
+     * @var DataProvider[]
+     */
+    protected $dataProviders;
 
     /**
      * @param ObjectManager $om
-     * @param Factory $faker
      * @param ConfigProvider $configProvider
+     * @param DataProvider[] $dataProviders
      */
-    public function __construct(ObjectManager $om, Factory $faker, ConfigProvider $configProvider)
+    public function __construct(
+        ObjectManager $om,
+        ConfigProvider $configProvider,
+        array $dataProviders
+    )
     {
         $this->om = $om;
-        $this->faker = $faker->create();
         $this->configProvider = $configProvider;
+        $this->dataProviders = $dataProviders;
     }
 
     /**
@@ -136,11 +135,13 @@ class EntityBuilder
     {
         $language = new ExpressionLanguage();
 
-        return $language->evaluate($data, [
-            'faker' => (new Factory())->create()
-        ]);
+        $providerValues = [];
 
-        return $value;
+        foreach($this->dataProviders as $provider) {
+            $providerValues[$provider->getCallableName()] = $provider->getProviderIntance();
+        }
+
+        return $language->evaluate($data, $providerValues);
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace Fludio\DoctrineEntityFactoryBundle\Tests\Dummy;
 
+use Fludio\DoctrineEntityFactoryBundle\Factory\DataProvider\FakerDataProvider;
 use Fludio\DoctrineEntityFactoryBundle\Factory\Factory;
 use Fludio\DoctrineEntityFactoryBundle\Factory\Metadata\ConfigLoader;
 use Fludio\DoctrineEntityFactoryBundle\Factory\Metadata\YamlConfigProvider;
@@ -48,9 +49,9 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
             __DIR__ . '/Config'
         ];
 
-        $faker = new \Faker\Factory();
         $configProvider = new YamlConfigProvider(new Parser(), new ConfigLoader($directories));
-        $this->factory = new Factory($this->em, new EntityBuilder($this->em, $faker, $configProvider));
+        $dataProvider = new FakerDataProvider();
+        $this->factory = new Factory($this->em, new EntityBuilder($this->em, $configProvider, [$dataProvider]));
     }
 
     /**
