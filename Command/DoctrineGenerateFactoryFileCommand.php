@@ -5,6 +5,7 @@ namespace Fludio\DoctrineEntityFactoryBundle\Command;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\Yaml\Parser;
 
 class DoctrineGenerateFactoryFileCommand extends ContainerAwareCommand
@@ -23,10 +24,13 @@ class DoctrineGenerateFactoryFileCommand extends ContainerAwareCommand
 
         $entityConfigs = $this->getContainer()->get('fludio_factory.schema_reader')->read();
 
-        $kernel = $this->getContainer()->get('kernel');
-        $bundles = $kernel->getBundles();
+        $bundles = $this->getContainer()->getParameter('kernel.bundles');
 
+        /** @var Bundle $bundle */
         foreach($bundles as $bundle) {
+            if(strpos($bundle->getPath(), '/src/') === false) {
+                continue;
+            }
             $factoryDir = $bundle->getPath() . '/Resources/config/entity-factory';
             $bundleNamespace = $bundle->getNamespace();
 
