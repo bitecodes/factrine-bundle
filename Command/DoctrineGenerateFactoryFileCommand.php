@@ -24,7 +24,8 @@ class DoctrineGenerateFactoryFileCommand extends ContainerAwareCommand
 
         $entityConfigs = $this->getContainer()->get('fludio_factory.schema_reader')->read();
 
-        $bundles = $this->getContainer()->getParameter('kernel.bundles');
+        $kernel = $this->getContainer()->get('kernel');
+        $bundles = $kernel->getBundles();
 
         /** @var Bundle $bundle */
         foreach($bundles as $bundle) {
