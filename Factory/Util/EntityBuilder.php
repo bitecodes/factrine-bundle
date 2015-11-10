@@ -3,6 +3,7 @@
 namespace Fludio\DoctrineEntityFactoryBundle\Factory\Util;
 
 use Doctrine\Common\Persistence\ObjectManager;
+use Exception;
 use Fludio\DoctrineEntityFactoryBundle\Factory\DataProvider\DataProvider;
 use Fludio\DoctrineEntityFactoryBundle\Factory\Metadata\ConfigProvider;
 use Symfony\Component\Security\Core\Authorization\ExpressionLanguage;
@@ -71,10 +72,11 @@ class EntityBuilder
             }
             if(isset($params[$field])) {
                 $value = $params[$field];
-            } else {
+                $instance->{'set' . ucfirst($field)}($value);
+            } elseif(isset($config[$entity][$field])) {
                 $value = $this->getValue($config[$entity][$field]);
+                $instance->{'set' . ucfirst($field)}($value);
             }
-            $instance->{'set' . ucwords($field)}($value);
         }
 
         foreach($meta->getAssociationNames() as $association) {
@@ -90,12 +92,12 @@ class EntityBuilder
             }
 
             if($meta->isSingleValuedAssociation($association)) {
-                $instance->{'set' . ucwords($association)}($this->createEntity($config[$entity][$association], $v));
+                $instance->{'set' . ucfirst($association)}($this->createEntity($config[$entity][$association], $v));
             } elseif ($meta->isCollectionValuedAssociation($association)) {
                 $class = $meta->getAssociationTargetClass($association);
                 $name = $this->om->getClassMetadata($class)->getReflectionClass()->getShortName();
 
-                $instance->{'add' . ucwords($name)}($this->createEntity($config[$entity][$association], $v, function($child) use ($instance) {
+                $instance->{'add' . ucfirst($name)}($this->createEntity($config[$entity][$association], $v, function($child) use ($instance) {
                     $meta = $this->om->getClassMetadata(get_class($instance));
                     $name = $meta->getReflectionClass()->getShortName();
                     return $child;
