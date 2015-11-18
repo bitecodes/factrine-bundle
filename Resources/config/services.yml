@@ -17,7 +17,7 @@ services:
             - @fludio_factory.entity_builder
 
     fludio_factory.entity_builder:
-        class: Fludio\DoctrineEntityFactoryBundle\Factory\Util\EntityBuilder
+        class: Fludio\DoctrineEntityFactoryBundle\Factory\EntityBuilder\EntityBuilder
         public: false
         arguments:
             - @doctrine.orm.entity_manager
