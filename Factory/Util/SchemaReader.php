@@ -41,5 +41,4 @@ class SchemaReader
 
         return $result;
     }
-
 }

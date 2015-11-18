@@ -23,14 +23,6 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->booleanNode('auto_detection')->defaultTrue()->end()
-//                ->arrayNode('directories')
-//                    ->prototype('array')
-//                        ->children()
-//                            ->scalarNode('namespace_prefix')->end()
-//                            ->scalarNode('path')->end()
-//                        ->end()
-//                    ->end()
-//                ->end()
             ->end();
 
         return $treeBuilder;
