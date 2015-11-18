@@ -25,11 +25,9 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
     protected $em;
 
     /**
-     * Public to allow access from the broken 5.3 closures.
-     *
      * @var Factory
      */
-    public $factory;
+    protected $factory;
 
     public function setUp()
     {
@@ -45,14 +43,8 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
 
         $this->em = $this->testDb->createEntityManager();
 
-        $directories = [
-            __DIR__ . '/Config'
-        ];
-
-        $configProvider = new YamlConfigProvider(new Parser(), new ConfigLoader($directories));
-        $dataProvider = new FakerDataProvider();
-        $this->factory = new Factory($this->em, new \Fludio\DoctrineEntityFactoryBundle\Factory\EntityBuilder\EntityBuilder($this->em));
-//        $this->factory = new Factory($this->em, new EntityBuilder($this->em, $configProvider, [$dataProvider]));
+        $entityBuilder = new \Fludio\DoctrineEntityFactoryBundle\Factory\EntityBuilder\EntityBuilder($this->em);
+        $this->factory = new Factory($this->em, $entityBuilder);
     }
 
     /**
@@ -74,5 +66,41 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
             $this->fail("Excpected $exceptionType but " . get_class($e) . " was thrown");
         }
         return $e;
+    }
+
+    protected function seeInDatabase($entity, $criteria)
+    {
+        $count = $this->getDatabaseResult($entity, $criteria);
+
+        $this->assertGreaterThan(0, $count, sprintf(
+            'Unable to find row in database table [%s] that matched attributes [%s].', $entity, json_encode($criteria)
+        ));
+
+        return $this;
+    }
+
+    protected function seeNotInDatabase($entity, $criteria)
+    {
+        $count = $this->getDatabaseResult($entity, $criteria);
+
+        $this->assertEquals(0, $count, sprintf(
+            'Found row in database table [%s] that matched attributes [%s].', $entity, json_encode($criteria)
+        ));
+
+        return $this;
+    }
+
+    private function getDatabaseResult($entity, $criteria)
+    {
+        $qb = $this->em
+            ->createQueryBuilder()
+            ->select('COUNT(e)')
+            ->from($entity, 'e');
+
+        foreach($criteria as $field => $value) {
+            $qb->andWhere("e.{$field} = :{$field}")->setParameter($field, $value);
+        }
+
+        return $qb->getQuery()->getSingleScalarResult();
     }
 }
