@@ -6,7 +6,6 @@ use Dflydev\DotAccessData\Data;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
-use Exception;
 use Fludio\DoctrineEntityFactoryBundle\Factory\EntityBuilder\Associations\ManyToMany;
 use Fludio\DoctrineEntityFactoryBundle\Factory\EntityBuilder\Associations\ManyToOne;
 use Fludio\DoctrineEntityFactoryBundle\Factory\EntityBuilder\Associations\OneToMany;
@@ -22,18 +21,18 @@ class EntityBuilder
     /**
      * @var ObjectManager
      */
-    protected $om;
+    protected $em;
     /**
      * @var PropertyAccessor
      */
     protected $accessor;
 
     /**
-     * @param EntityManager $om
+     * @param EntityManager $em
      */
-    public function __construct(EntityManager $om)
+    public function __construct(EntityManager $em)
     {
-        $this->om = $om;
+        $this->em = $em;
         $this->accessor = new PropertyAccessor();
     }
 
@@ -41,19 +40,13 @@ class EntityBuilder
      * @param $entity
      * @param array $params
      * @param null $callback
-     * @return array|mixed|object
-     * @throws Exception
+     * @return object
      */
     public function createEntity($entity, $params = [], $callback = null)
     {
         $params = $this->prepareParams($params);
 
-        // check if entity exists
-        if(!class_exists($entity)) {
-            throw new Exception('Class not found');
-        }
-
-        $meta = $this->om->getClassMetadata($entity);
+        $meta = $this->em->getClassMetadata($entity);
 
         $instance = new $entity;
 

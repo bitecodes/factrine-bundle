@@ -1,9 +1,7 @@
 <?php
 
-
 namespace Fludio\DoctrineEntityFactoryBundle\Tests\Factory\EntityBuilder;
 
-use Dflydev\DotAccessData\Data;
 use Doctrine\Common\Collections\ArrayCollection;
 use Fludio\DoctrineEntityFactoryBundle\Factory\EntityBuilder\EntityBuilder;
 use Fludio\DoctrineEntityFactoryBundle\Tests\Dummy\TestCase;
@@ -55,6 +53,15 @@ class EntityBuilderTest extends TestCase
         $this->assertEquals(0, $user->getEmailAddresses()->count());
         $this->assertEquals(0, $user->getHobbies()->count());
         $this->assertEquals(0, $user->getGroups()->count());
+    }
+
+    /**
+     * @test
+     * @expectedException Doctrine\ORM\Mapping\MappingException
+     */
+    public function it_throws_an_exception_if_the_entity_does_not_exist()
+    {
+        $this->builder->createEntity(TestCase::class);
     }
 
     /** @test */
