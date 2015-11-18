@@ -6,8 +6,6 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManager;
 use Fludio\DoctrineEntityFactoryBundle\Factory\EntityBuilder\EntityBuilder;
 
-//use Fludio\DoctrineEntityFactoryBundle\Factory\Util\EntityBuilder;
-
 class Factory
 {
     /**

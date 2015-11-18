@@ -4,7 +4,6 @@
 namespace Fludio\DoctrineEntityFactoryBundle\Factory\Metadata;
 
 use Symfony\Component\Yaml\Parser;
-use Symfony\Component\Yaml\Yaml;
 
 class YamlConfigProvider extends ConfigProvider
 {

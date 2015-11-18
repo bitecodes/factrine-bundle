@@ -3,8 +3,6 @@
 namespace Fludio\DoctrineEntityFactoryBundle\Factory\EntityBuilder;
 
 use Dflydev\DotAccessData\Data;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Persistence\Mapping\ClassMetadata;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
@@ -100,8 +98,11 @@ class EntityBuilder
     /**
      * @param $association
      * @param ClassMetadataInfo $meta
+     * @param $instance
+     * @param Data $params
+     * @throws \Doctrine\ORM\Mapping\MappingException
      */
-    private function handleAssociation($association, ClassMetadataInfo $meta, $instance, $params)
+    private function handleAssociation($association, ClassMetadataInfo $meta, $instance, Data $params)
     {
         $data = $params->get($association);
         if(is_array($data) && isset($data[0])) {

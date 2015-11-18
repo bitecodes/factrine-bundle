@@ -4,7 +4,6 @@ namespace Fludio\DoctrineEntityFactoryBundle\Factory\Util;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\ClassMetadata;
-use Fludio\TestBundle\Entity\Post;
 
 class SchemaReader
 {

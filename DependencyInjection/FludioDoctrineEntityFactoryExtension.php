@@ -38,8 +38,6 @@ class FludioDoctrineEntityFactoryExtension extends Extension
             }
         }
 
-        $defs = $container->getDefinitions();
-        
         $container
             ->getDefinition('fludio_doctrine_entity_factory.metadata.config_loader')
             ->replaceArgument(0, $directories);

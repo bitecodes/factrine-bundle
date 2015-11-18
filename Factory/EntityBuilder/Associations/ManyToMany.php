@@ -1,10 +1,6 @@
 <?php
 
-
 namespace Fludio\DoctrineEntityFactoryBundle\Factory\EntityBuilder\Associations;
-
-
-use Doctrine\Common\Collections\ArrayCollection;
 
 class ManyToMany extends AbstractAssociation
 {
@@ -29,7 +25,6 @@ class ManyToMany extends AbstractAssociation
             $entity = $data;
         }
 
-        // Create a new entity
         $this->accessor->setValue(
             $this->instance,
             $this->association,

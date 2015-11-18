@@ -43,7 +43,7 @@ abstract class AbstractAssociation
 
     public function handle($association, ClassMetadataInfo $meta, $instance, Data $params)
     {
-        if($params->get($association) == null) {
+        if($params->get($association) === null) {
             return;
         }
 
