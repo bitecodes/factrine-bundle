@@ -4,8 +4,6 @@
 namespace Fludio\DoctrineEntityFactoryBundle\Factory\EntityBuilder\Associations;
 
 
-use Doctrine\Common\Collections\ArrayCollection;
-
 class OneToMany extends AbstractAssociation
 {
     protected function selfReferential()
