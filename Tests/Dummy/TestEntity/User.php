@@ -36,13 +36,6 @@ class User
     private $lastName;
 
     /**
-     * @var string
-     *
-     * @Column(name="email", type="string", length=255)
-     */
-    private $email;
-
-    /**
      * @var \DateTime
      *
      * @Column(name="dob", type="date")
@@ -62,9 +55,61 @@ class User
      **/
     private $hobbies;
 
+    /**
+     * @ManyToMany(targetEntity="EmailAddress")
+     * @JoinTable(name="users_email_addresses",
+     *      joinColumns={@JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="email_id", referencedColumnName="id", unique=true)}
+     *      )
+     */
+    private $emailAddresses;
+
+    /**
+     * @OneToOne(targetEntity="Phone")
+     * @JoinColumn(name="phone_id", referencedColumnName="id")
+     */
+    private $phone;
+
+    /**
+     * @OneToOne(targetEntity="Job", mappedBy="user")
+     */
+    private $job;
+
+    /**
+     * @OneToOne(targetEntity="User")
+     * @JoinColumn(name="spouse_id", referencedColumnName="id")
+     */
+    private $spouse;
+
+    /**
+     * @ManyToMany(targetEntity="Group")
+     * @JoinTable(name="users_groups",
+     *      joinColumns={@JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="group_id", referencedColumnName="id")}
+     *      )
+     */
+    private $groups;
+
+    /**
+     * @ManyToMany(targetEntity="User", mappedBy="children")
+     */
+    private $parents;
+
+    /**
+     * @ManyToMany(targetEntity="User", inversedBy="parents")
+     * @JoinTable(name="family",
+     *      joinColumns={@JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="child_id", referencedColumnName="id")}
+     *      )
+     */
+    private $children;
 
     public function __construct() {
         $this->hobbies = new ArrayCollection();
+        $this->emailAddresses = new ArrayCollection();
+        $this->groups = new ArrayCollection();
+        $this->parents = new ArrayCollection();
+        $this->children = new ArrayCollection();
     }
 
     /**
@@ -124,29 +169,6 @@ class User
     }
 
     /**
-     * Set email
-     *
-     * @param string $email
-     * @return User
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string 
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
      * Set dob
      *
      * @param \DateTime $dob
@@ -189,6 +211,39 @@ class User
     }
 
     /**
+     * Add emailAddress
+     *
+     * @param EmailAddress $emailAddress
+     * @return User
+     */
+    public function addEmailAddress(EmailAddress $emailAddress)
+    {
+        $this->emailAddresses[] = $emailAddress;
+
+        return $this;
+    }
+
+    /**
+     * Remove emailAddress
+     *
+     * @param EmailAddress $emailAddress
+     */
+    public function removeEmailAddress(EmailAddress $emailAddress)
+    {
+        $this->emailAddresses->removeElement($emailAddress);
+    }
+
+    /**
+     * Get email addresses
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEmailAddresses()
+    {
+        return $this->emailAddresses;
+    }
+
+    /**
      * Add hobby
      *
      * @param Hobby $hobby
@@ -214,10 +269,167 @@ class User
     /**
      * Get hobbies
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getHobbies()
     {
         return $this->hobbies;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    /**
+     * @param mixed $phone
+     * @return $this
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getJob()
+    {
+        return $this->job;
+    }
+
+    /**
+     * @param mixed $job
+     * @return $this
+     */
+    public function setJob($job)
+    {
+        $this->job = $job;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSpouse()
+    {
+        return $this->spouse;
+    }
+
+    /**
+     * @param mixed $spouse
+     * @return $this
+     */
+    public function setSpouse($spouse)
+    {
+        $this->spouse = $spouse;
+
+        return $this;
+    }
+
+    /**
+     * Add group
+     *
+     * @param Group $group
+     * @return User
+     */
+    public function addGroup(Group $group)
+    {
+        $this->groups[] = $group;
+
+        return $this;
+    }
+
+    /**
+     * Remove group
+     *
+     * @param Group $group
+     */
+    public function removeGroup(Group $group)
+    {
+        $this->groups->removeElement($group);
+    }
+
+    /**
+     * Get groups
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getGroups()
+    {
+        return $this->groups;
+    }
+
+    /**
+     * Add parent
+     *
+     * @param User $parent
+     * @return User
+     */
+    public function addParent(User $parent)
+    {
+        $this->parents[] = $parent;
+
+        return $this;
+    }
+
+    /**
+     * Remove parent
+     *
+     * @param User $parent
+     */
+    public function removeParent(User $parent)
+    {
+        $this->parents->removeElement($parent);
+    }
+
+    /**
+     * Get parents
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getParents()
+    {
+        return $this->parents;
+    }
+
+
+    /**
+     * Add child
+     *
+     * @param User $child
+     * @return User
+     */
+    public function addChild(User $child)
+    {
+        $this->children[] = $child;
+
+        return $this;
+    }
+
+    /**
+     * Remove child
+     *
+     * @param User $child
+     */
+    public function removeChild(User $child)
+    {
+        $this->children->removeElement($child);
+    }
+
+    /**
+     * Get children
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getChildren()
+    {
+        return $this->children;
     }
 }

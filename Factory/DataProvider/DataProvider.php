@@ -6,5 +6,5 @@ abstract class DataProvider
 {
     abstract public function getCallableName();
 
-    abstract public function getProviderIntance();
+    abstract public function getProviderInstance();
 }

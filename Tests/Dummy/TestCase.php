@@ -51,7 +51,8 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
 
         $configProvider = new YamlConfigProvider(new Parser(), new ConfigLoader($directories));
         $dataProvider = new FakerDataProvider();
-        $this->factory = new Factory($this->em, new EntityBuilder($this->em, $configProvider, [$dataProvider]));
+        $this->factory = new Factory($this->em, new \Fludio\DoctrineEntityFactoryBundle\Factory\EntityBuilder\EntityBuilder($this->em));
+//        $this->factory = new Factory($this->em, new EntityBuilder($this->em, $configProvider, [$dataProvider]));
     }
 
     /**

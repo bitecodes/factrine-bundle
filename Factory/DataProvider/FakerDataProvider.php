@@ -11,7 +11,7 @@ class FakerDataProvider extends DataProvider
         return 'faker';
     }
 
-    public function getProviderIntance()
+    public function getProviderInstance()
     {
         $faker = new Factory();
         return $faker->create();

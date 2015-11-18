@@ -140,7 +140,7 @@ class EntityBuilder
         $providerValues = [];
 
         foreach($this->dataProviders as $provider) {
-            $providerValues[$provider->getCallableName()] = $provider->getProviderIntance();
+            $providerValues[$provider->getCallableName()] = $provider->getProviderInstance();
         }
 
         return $language->evaluate($data, $providerValues);
