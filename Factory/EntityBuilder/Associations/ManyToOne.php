@@ -56,7 +56,8 @@ class ManyToOne extends AbstractAssociation
         $assocClass = $this->meta->getAssociationTargetClass($this->association);
 
         if(!$data instanceof $assocClass) {
-            $data[$mapping['mappedBy']] = $this->instance;
+            $field = is_null($mapping['mappedBy']) ? $mapping['inversedBy'] : $mapping['mappedBy'];
+            $data[$field] = $this->instance;
             $entity = $this->entityBuilder->createEntity($assocClass, $data);
         } else {
             $entity = $data;
