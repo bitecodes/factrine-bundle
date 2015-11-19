@@ -56,7 +56,7 @@ class FactoryTest extends TestCase
     /** @test */
     public function it_adds_fake_data_from_config_files()
     {
-        $address = $this->factory->make(Address::class);
+        $address = $this->factory->create(Address::class);
 
         $this->assertNotNull($address->getStreet());
         $this->assertNotNull($address->getCity());
@@ -66,9 +66,9 @@ class FactoryTest extends TestCase
     /** @test */
     public function it_adds_fake_data_to_associated_entites()
     {
-        $user = $this->factory->make(User::class);
+        $user = $this->factory->create(User::class);
         $address = $user->getAddress();
-
+        
         $this->assertNotNull($user->getFirstName());
         $this->assertNotNull($address->getStreet());
         $this->assertNotNull($address->getCity());
