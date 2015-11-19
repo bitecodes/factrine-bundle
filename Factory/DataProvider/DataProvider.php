@@ -2,9 +2,19 @@
 
 namespace Fludio\DoctrineEntityFactoryBundle\Factory\DataProvider;
 
-abstract class DataProvider
+interface DataProvider
 {
-    abstract public function getCallableName();
+    public function getCallableName();
 
-    abstract public function getProviderInstance();
+    public function getProviderInstance();
+
+    public function getProviderCallables();
+
+    public function getIntegerDefault();
+
+    public function getStringDefault();
+
+    public function getDateDefault();
+
+    public function getBooleanDefault();
 }
