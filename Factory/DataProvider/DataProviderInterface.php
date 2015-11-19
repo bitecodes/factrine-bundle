@@ -2,7 +2,7 @@
 
 namespace Fludio\DoctrineEntityFactoryBundle\Factory\DataProvider;
 
-interface DataProvider
+interface DataProviderInterface
 {
     public function getCallableName();
 
