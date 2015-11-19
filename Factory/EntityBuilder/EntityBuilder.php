@@ -100,7 +100,6 @@ class EntityBuilder
         $data = $params->get($association);
         if(is_array($data) && isset($data[0])) {
             foreach($data as $index => $set) {
-                false;
                 $mapping = $meta->getAssociationMapping($association);
 
                 switch($mapping['type']) {
@@ -120,7 +119,6 @@ class EntityBuilder
                 $assoc->handle($association, $meta, $instance, new Data([$association => $set]));
             }
         } else {
-            false;
             $mapping = $meta->getAssociationMapping($association);
 
             switch($mapping['type']) {
