@@ -33,8 +33,8 @@ services:
         public: false
 
     fludio_doctrine_entity_factory.factory_util.value_factory:
-    	class: Fludio\DoctrineEntityFactoryBundle\Factory\Util\ValueFactory
-    	public: false
-    	arguments:
-    	    - @fludio_doctrine_entity_factory.config_provider.yaml_config_provider,
-    	    - [@fludio_doctrine_entity_factory.factory_data_provider.faker_data_provider]
+        class: Fludio\DoctrineEntityFactoryBundle\Factory\Util\ValueFactory
+        public: false
+        arguments:
+            - @fludio_doctrine_entity_factory.config_provider.yaml_config_provider,
+            - [@fludio_doctrine_entity_factory.factory_data_provider.faker_data_provider]
