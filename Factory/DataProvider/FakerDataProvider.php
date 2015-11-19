@@ -4,7 +4,7 @@ namespace Fludio\DoctrineEntityFactoryBundle\Factory\DataProvider;
 
 use Faker\Factory;
 
-class FakerDataProvider implements DataProvider
+class FakerDataProvider implements DataProviderInterface
 {
     const REGEX_PROPS = '/(?<=\$)\w*.*[^\)]$/m';
     const REGEX_METHODS = '/\w+(?=\()/';
