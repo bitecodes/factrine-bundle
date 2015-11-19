@@ -5,30 +5,41 @@ namespace Fludio\DoctrineEntityFactoryBundle\Factory;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManager;
 use Fludio\DoctrineEntityFactoryBundle\Factory\EntityBuilder\EntityBuilder;
+use Fludio\DoctrineEntityFactoryBundle\Factory\Util\ValueFactory;
 
 class Factory
 {
-    /**
-     * @var EntityManager
-     */
-    protected $om;
     /**
      * @var int
      */
     protected $times = 1;
     /**
+     * @var EntityManager
+     */
+    protected $om;
+    /**
      * @var EntityBuilder
      */
     private $entityBuilder;
+    /**
+     * @var ValueFactory
+     */
+    private $valueFactory;
 
     /**
      * @param ObjectManager $om
      * @param EntityBuilder $entityBuilder
+     * @param ValueFactory $valueFactory
      */
-    public function __construct(ObjectManager $om, EntityBuilder $entityBuilder)
+    public function __construct(
+        ObjectManager $om,
+        EntityBuilder $entityBuilder,
+        ValueFactory $valueFactory
+    )
     {
         $this->om = $om;
         $this->entityBuilder = $entityBuilder;
+        $this->valueFactory = $valueFactory;
     }
 
     /**
@@ -42,6 +53,8 @@ class Factory
         $result = [];
         $loops = $this->times;
         $this->times = 1;
+
+        $params = $this->mergeParams($params, $entity);
 
         for($i = 1; $i <= $loops; $i++) {
             $result[] = $this->entityBuilder->createEntity($entity, $params, $callback);
@@ -82,5 +95,16 @@ class Factory
         $this->times = $times;
 
         return $this;
+    }
+
+    /**
+     * @param $params
+     * @return array
+     */
+    protected function mergeParams($params, $entity)
+    {
+        $fakeValues = $this->valueFactory->getAllValues($entity);
+
+        return array_merge($fakeValues, $params);
     }
 }
