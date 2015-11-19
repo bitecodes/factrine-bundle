@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Fludio\DoctrineEntityFactoryBundle\Factory\Metadata;
+namespace Fludio\DoctrineEntityFactoryBundle\Factory\ConfigProvider;
 
 abstract class ConfigProvider
 {

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Fludio\DoctrineEntityFactoryBundle\Factory\Metadata;
+namespace Fludio\DoctrineEntityFactoryBundle\Factory\ConfigProvider;
 
 use Symfony\Component\Yaml\Parser;
 
@@ -16,9 +16,9 @@ class YamlConfigProvider extends ConfigProvider
      */
     private $loader;
 
-    public function __construct(Parser $yaml, ConfigLoader $loader)
+    public function __construct(ConfigLoader $loader)
     {
-        $this->yaml = $yaml;
+        $this->yaml = new Parser();
         $this->loader = $loader;
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Fludio\DoctrineEntityFactoryBundle\Factory\Metadata;
+namespace Fludio\DoctrineEntityFactoryBundle\Factory\ConfigProvider;
 
 class ConfigLoader
 {
