@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
+use Symfony\Component\Yaml\Dumper;
 use Symfony\Component\Yaml\Parser;
 
 class DoctrineGenerateFactoryFileCommand extends ContainerAwareCommand
@@ -20,7 +21,7 @@ class DoctrineGenerateFactoryFileCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $parser = new Parser();
-        $dumper = $this->getContainer()->get('yaml_dumper');
+        $dumper = new Dumper();
 
         $entityConfigs = $this->getContainer()->get('fludio_factory.schema_reader')->read();
 
