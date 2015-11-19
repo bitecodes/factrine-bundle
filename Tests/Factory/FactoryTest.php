@@ -32,7 +32,7 @@ class FactoryTest extends TestCase
     }
 
     /** @test */
-    public function it_creates_multiple_models()
+    public function it_creates_multiple_entities()
     {
         $users = $this->factory->times(3)->make(User::class);
 
@@ -48,8 +48,30 @@ class FactoryTest extends TestCase
             'zip' => '82020'
         ]);
 
-        $count = $this->getDatabaseResult(Address::class, []);
+        $count = $this->getDatabaseCount(Address::class, []);
 
         $this->assertEquals(3, $count);
+    }
+
+    /** @test */
+    public function it_adds_fake_data_from_config_files()
+    {
+        $address = $this->factory->make(Address::class);
+
+        $this->assertNotNull($address->getStreet());
+        $this->assertNotNull($address->getCity());
+        $this->assertNotNull($address->getZip());
+    }
+
+    /** @test */
+    public function it_adds_fake_data_to_associated_entites()
+    {
+        $user = $this->factory->make(User::class);
+        $address = $user->getAddress();
+
+        $this->assertNotNull($user->getFirstName());
+        $this->assertNotNull($address->getStreet());
+        $this->assertNotNull($address->getCity());
+        $this->assertNotNull($address->getZip());
     }
 }

@@ -4,9 +4,10 @@ namespace Fludio\DoctrineEntityFactoryBundle\Tests\Dummy;
 
 use Fludio\DoctrineEntityFactoryBundle\Factory\DataProvider\FakerDataProvider;
 use Fludio\DoctrineEntityFactoryBundle\Factory\Factory;
-use Fludio\DoctrineEntityFactoryBundle\Factory\Metadata\ConfigLoader;
-use Fludio\DoctrineEntityFactoryBundle\Factory\Metadata\YamlConfigProvider;
+use Fludio\DoctrineEntityFactoryBundle\Factory\ConfigProvider\ConfigLoader;
+use Fludio\DoctrineEntityFactoryBundle\Factory\ConfigProvider\YamlConfigProvider;
 use Fludio\DoctrineEntityFactoryBundle\Factory\Util\EntityBuilder;
+use Fludio\DoctrineEntityFactoryBundle\Factory\Util\ValueFactory;
 use PHPUnit_Framework_Error;
 use Doctrine\ORM\EntityManager;
 use Exception;
@@ -43,8 +44,17 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
 
         $this->em = $this->testDb->createEntityManager();
 
+        $configDir = __DIR__ . '/Config';
+
+        $loader = new ConfigLoader([$configDir]);
+
+        $configProvider = new YamlConfigProvider($loader);
+        $fakerDataProvider = new FakerDataProvider();
+
+        $valueFactory = new ValueFactory($configProvider, [$fakerDataProvider]);
+
         $entityBuilder = new \Fludio\DoctrineEntityFactoryBundle\Factory\EntityBuilder\EntityBuilder($this->em);
-        $this->factory = new Factory($this->em, $entityBuilder);
+        $this->factory = new Factory($this->em, $entityBuilder, $valueFactory);
     }
 
     /**
@@ -70,7 +80,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
 
     protected function seeInDatabase($entity, $criteria)
     {
-        $count = $this->getDatabaseResult($entity, $criteria);
+        $count = $this->getDatabaseCount($entity, $criteria);
 
         $this->assertGreaterThan(0, $count, sprintf(
             'Unable to find row in database table [%s] that matched attributes [%s].', $entity, json_encode($criteria)
@@ -81,7 +91,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
 
     protected function seeNotInDatabase($entity, $criteria)
     {
-        $count = $this->getDatabaseResult($entity, $criteria);
+        $count = $this->getDatabaseCount($entity, $criteria);
 
         $this->assertEquals(0, $count, sprintf(
             'Found row in database table [%s] that matched attributes [%s].', $entity, json_encode($criteria)
@@ -90,7 +100,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
         return $this;
     }
 
-    protected function getDatabaseResult($entity, $criteria)
+    protected function getDatabaseCount($entity, $criteria)
     {
         $qb = $this->em
             ->createQueryBuilder()
