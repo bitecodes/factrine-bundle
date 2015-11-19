@@ -4,37 +4,51 @@ services:
         arguments:
             - @doctrine.orm.entity_manager
             - @fludio_factory.entity_builder
-            - @fludio_doctrine_entity_factory.factory_util.value_factory
+            - @fludio_factory.util.value_factory
 
     fludio_factory.entity_builder:
         class: Fludio\DoctrineEntityFactoryBundle\Factory\EntityBuilder\EntityBuilder
         public: false
         arguments:
             - @doctrine.orm.entity_manager
-            - @fludio_doctrine_entity_factory.metadata.yaml_config_provider
+            - @fludio_factory.config_provider.yaml_config_provider
 
     fludio_factory.schema_reader:
         class: Fludio\DoctrineEntityFactoryBundle\Factory\Util\SchemaReader
         arguments:
             - @doctrine.orm.entity_manager
 
-    fludio_doctrine_entity_factory.config_provider.config_loader:
+    fludio_factory.config_provider.config_loader:
         class: Fludio\DoctrineEntityFactoryBundle\Factory\ConfigProvider\ConfigLoader
         public: false
         arguments: [{}]
 
-    fludio_doctrine_entity_factory.config_provider.yaml_config_provider:
+    fludio_factory.config_provider.config_generator:
+        class: Fludio\DoctrineEntityFactoryBundle\Factory\ConfigProvider\ConfigGenerator
+        arguments:
+            - @doctrine.orm.entity_manager
+            - @fludio_factory.util.data_guesser
+            - @kernel
+
+    fludio_factory.config_provider.yaml_config_provider:
         class: Fludio\DoctrineEntityFactoryBundle\Factory\ConfigProvider\YamlConfigProvider
         public: false
-        arguments: [ @yaml_parser, @fludio_doctrine_entity_factory.config_provider.config_loader ]
+        arguments:
+            - @fludio_factory.config_provider.config_loader
 
-    fludio_doctrine_entity_factory.factory_data_provider.faker_data_provider:
+    fludio_factory.data_provider.faker_data_provider:
         class: Fludio\DoctrineEntityFactoryBundle\Factory\DataProvider\FakerDataProvider
         public: false
 
-    fludio_doctrine_entity_factory.factory_util.value_factory:
+    fludio_factory.util.value_factory:
         class: Fludio\DoctrineEntityFactoryBundle\Factory\Util\ValueFactory
         public: false
         arguments:
-            - @fludio_doctrine_entity_factory.config_provider.yaml_config_provider,
-            - [@fludio_doctrine_entity_factory.factory_data_provider.faker_data_provider]
+            - @fludio_factory.config_provider.yaml_config_provider
+            - [@fludio_factory.data_provider.faker_data_provider]
+
+    fludio_factory.util.data_guesser:
+        class: Fludio\DoctrineEntityFactoryBundle\Factory\Util\DataGuesser
+        public: false;
+        arguments:
+            - @fludio_factory.data_provider.faker_data_provider

@@ -39,8 +39,7 @@ class FludioDoctrineEntityFactoryExtension extends Extension
         }
 
         $container
-            ->getDefinition('fludio_doctrine_entity_factory.metadata.config_loader')
+            ->getDefinition('fludio_factory.config_provider.config_loader')
             ->replaceArgument(0, $directories);
-
     }
 }
