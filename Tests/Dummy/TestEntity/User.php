@@ -45,13 +45,13 @@ class User
     /**
      * @var Address
      *
-     * @ManyToOne(targetEntity="Address", cascade={"persist"})
+     * @ManyToOne(targetEntity="Address")
      * @JoinColumn(name="address_id", referencedColumnName="id")
      **/
     private $address;
 
     /**
-     * @OneToMany(targetEntity="Hobby", mappedBy="user", cascade={"persist"})
+     * @OneToMany(targetEntity="Hobby", mappedBy="user")
      **/
     private $hobbies;
 
