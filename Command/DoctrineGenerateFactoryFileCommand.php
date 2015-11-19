@@ -15,48 +15,39 @@ class DoctrineGenerateFactoryFileCommand extends ContainerAwareCommand
     {
         $this
             ->setName('doctrine:generate:factory-file')
-            ->setDescription('It generates the factory files from your schema.');
+            ->setDescription('It generates the factory files for your entities.');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $parser = new Parser();
         $dumper = new Dumper();
-
-        $entityConfigs = $this->getContainer()->get('fludio_factory.schema_reader')->read();
-
         $kernel = $this->getContainer()->get('kernel');
+        $generator = $this->getContainer()->get('fludio_factory.config_provider.config_generator');
+
         $bundles = $kernel->getBundles();
+        $configs = $generator->generate();
 
         /** @var Bundle $bundle */
         foreach($bundles as $bundle) {
-            if(strpos($bundle->getPath(), '/src/') === false) {
-                continue;
-            }
-            $factoryDir = $bundle->getPath() . '/Resources/config/entity-factory';
-            $bundleNamespace = $bundle->getNamespace();
-
-            foreach($entityConfigs as $entity => $config) {
-                $refl = new \ReflectionClass($entity);
-                if(strpos($refl->getNamespaceName(), $bundleNamespace) !== false) {
-                    $path = $factoryDir . DIRECTORY_SEPARATOR . $refl->getShortName() . '.yml';
-
-                    if(!file_exists($factoryDir)) {
-                        mkdir($factoryDir, 0777, true);
-                    }
-
-                    if(file_exists($path)) {
-                        $oldYaml = file_get_contents($path);
-                        $oldConfig = $parser->parse($oldYaml);
-                        if($oldConfig) {
-                            $config = array_replace_recursive($config, $oldConfig[$entity]);
-                        }
-                    }
-
-                    $yaml = $dumper->dump([$entity => $config], 100);
-
-                    file_put_contents($path, $yaml);
+            foreach($configs as $entity => $config) {
+                if(strpos($entity, $bundle->getNamespace()) === false) {
+                    continue;
                 }
+
+                $refl = new \ReflectionClass($entity);
+
+                $path = $bundle->getPath();
+                $factoryDir = $path . '/Resources/config/factrine/';
+                $file = $factoryDir . $refl->getShortName() . '.yml';
+
+                if(!file_exists($factoryDir)) {
+                    mkdir($factoryDir, 0777, true);
+                }
+
+                $content = $dumper->dump([$entity => $config], 4);
+
+                // TODO check for existing files and merge them
+                file_put_contents($file, $content);
             }
         }
     }
