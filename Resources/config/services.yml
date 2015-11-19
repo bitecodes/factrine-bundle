@@ -1,20 +1,10 @@
 services:
-    yaml_parser:
-        class: Symfony\Component\Yaml\Parser
-        public: false
-
-    yaml_dumper:
-        class: Symfony\Component\Yaml\Dumper
-
-    faker:
-        class: Faker\Factory
-        public: false
-
     fludio_factory.factory:
         class: Fludio\DoctrineEntityFactoryBundle\Factory\Factory
         arguments:
             - @doctrine.orm.entity_manager
             - @fludio_factory.entity_builder
+            - @fludio_doctrine_entity_factory.factory_util.value_factory
 
     fludio_factory.entity_builder:
         class: Fludio\DoctrineEntityFactoryBundle\Factory\EntityBuilder\EntityBuilder
@@ -22,21 +12,29 @@ services:
         arguments:
             - @doctrine.orm.entity_manager
             - @fludio_doctrine_entity_factory.metadata.yaml_config_provider
-            - [@fludio_doctrine_entity_factory.factory_data_provider.faker_data_provider]
 
     fludio_factory.schema_reader:
         class: Fludio\DoctrineEntityFactoryBundle\Factory\Util\SchemaReader
         arguments:
             - @doctrine.orm.entity_manager
 
-    fludio_doctrine_entity_factory.metadata.config_loader:
-        class: Fludio\DoctrineEntityFactoryBundle\Factory\Metadata\ConfigLoader
+    fludio_doctrine_entity_factory.config_provider.config_loader:
+        class: Fludio\DoctrineEntityFactoryBundle\Factory\ConfigProvider\ConfigLoader
         public: false
         arguments: [{}]
 
-    fludio_doctrine_entity_factory.metadata.yaml_config_provider:
-        class: Fludio\DoctrineEntityFactoryBundle\Factory\Metadata\YamlConfigProvider
-        arguments: [ @yaml_parser, @fludio_doctrine_entity_factory.metadata.config_loader ]
+    fludio_doctrine_entity_factory.config_provider.yaml_config_provider:
+        class: Fludio\DoctrineEntityFactoryBundle\Factory\ConfigProvider\YamlConfigProvider
+        public: false
+        arguments: [ @yaml_parser, @fludio_doctrine_entity_factory.config_provider.config_loader ]
 
     fludio_doctrine_entity_factory.factory_data_provider.faker_data_provider:
         class: Fludio\DoctrineEntityFactoryBundle\Factory\DataProvider\FakerDataProvider
+        public: false
+
+    fludio_doctrine_entity_factory.factory_util.value_factory:
+    	class: Fludio\DoctrineEntityFactoryBundle\Factory\Util\ValueFactory
+    	public: false
+    	arguments:
+    	    - @fludio_doctrine_entity_factory.config_provider.yaml_config_provider,
+    	    - [@fludio_doctrine_entity_factory.factory_data_provider.faker_data_provider]
