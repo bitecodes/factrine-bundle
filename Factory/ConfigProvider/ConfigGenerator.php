@@ -60,8 +60,7 @@ class ConfigGenerator
         
         /** @var Bundle $bundle */
         foreach($kernel->getBundles() as $bundle) {
-            // TODO fix how to find out about project specific bundles
-            if (strpos($bundle->getPath(), '/') !== false) {
+            if (strpos($bundle->getPath(), 'vendor') === false) {
                 $bundles[] = $bundle;
             }
         }
