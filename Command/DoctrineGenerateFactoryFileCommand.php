@@ -7,7 +7,6 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\Yaml\Dumper;
-use Symfony\Component\Yaml\Parser;
 
 class DoctrineGenerateFactoryFileCommand extends ContainerAwareCommand
 {
