@@ -38,4 +38,18 @@ class FactoryTest extends TestCase
 
         $this->assertEquals(3, count($users));
     }
+
+    /** @test */
+    public function it_persists_multiple_entities()
+    {
+        $this->factory->times(3)->create(Address::class, [
+            'street' => 'Main St. 10',
+            'city' => 'New York',
+            'zip' => '82020'
+        ]);
+
+        $count = $this->getDatabaseResult(Address::class, []);
+
+        $this->assertEquals(3, $count);
+    }
 }

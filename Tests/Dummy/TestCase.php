@@ -90,7 +90,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
         return $this;
     }
 
-    private function getDatabaseResult($entity, $criteria)
+    protected function getDatabaseResult($entity, $criteria)
     {
         $qb = $this->em
             ->createQueryBuilder()
