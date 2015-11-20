@@ -5,7 +5,7 @@ namespace Fludio\DoctrineEntityFactoryBundle\Factory\ConfigProvider;
 
 use Symfony\Component\Yaml\Parser;
 
-class YamlConfigProvider extends ConfigProvider
+class YamlConfigProvider implements ConfigProviderInterface
 {
     /**
      * @var Parser

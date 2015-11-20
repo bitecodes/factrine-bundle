@@ -3,7 +3,7 @@
 
 namespace Fludio\DoctrineEntityFactoryBundle\Factory\ConfigProvider;
 
-abstract class ConfigProvider
+interface ConfigProviderInterface
 {
-    abstract function getConfig();
+    public function getConfig();
 }

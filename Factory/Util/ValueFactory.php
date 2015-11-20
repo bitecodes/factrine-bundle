@@ -1,10 +1,8 @@
 <?php
 
-
 namespace Fludio\DoctrineEntityFactoryBundle\Factory\Util;
 
-
-use Fludio\DoctrineEntityFactoryBundle\Factory\ConfigProvider\ConfigProvider;
+use Fludio\DoctrineEntityFactoryBundle\Factory\ConfigProvider\ConfigProviderInterface;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 
 class ValueFactory
@@ -22,7 +20,7 @@ class ValueFactory
      */
     protected $providerValues;
 
-    public function __construct(ConfigProvider $config, array $dataProviders)
+    public function __construct(ConfigProviderInterface $config, array $dataProviders)
     {
         $this->config = $config->getConfig();
         $this->language = new ExpressionLanguage();
