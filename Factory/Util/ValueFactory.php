@@ -36,13 +36,17 @@ class ValueFactory
         return $this->language->evaluate($data, $this->providerValues);
     }
 
-    public function getAllValues($entity)
+    public function getAllValues($entity, $parent = null)
     {
         $data = [];
 
         foreach($this->config[$entity] as $field => $expression) {
+            if($parent == $expression) {
+                continue;
+            }
+
             if(class_exists($expression)) {
-                $data[$field] = $this->getAllValues($expression);
+                $data[$field] = $this->getAllValues($expression, $entity);
             } else {
                 $data[$field] = $this->getValue($entity, $field);
             }
