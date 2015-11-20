@@ -74,4 +74,15 @@ class FactoryTest extends TestCase
         $this->assertNotNull($address->getCity());
         $this->assertNotNull($address->getZip());
     }
+
+    /** @test */
+    public function it_persists_deeply_nested_associations()
+    {
+        $user = $this->factory->create(User::class);
+        $phone = $user->getPhone();
+        $app = $phone->getApps();
+
+        $this->assertEquals(1, $phone->getApps()->count());
+        $this->assertNotNull($app->first()->getTitle());
+    }
 }

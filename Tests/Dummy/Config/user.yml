@@ -5,3 +5,4 @@ Fludio\DoctrineEntityFactoryBundle\Tests\Dummy\TestEntity\User:
     dob: faker.dateTimeBetween('-50 years', '-20 years')
     address: Fludio\DoctrineEntityFactoryBundle\Tests\Dummy\TestEntity\Address
     hobbies: Fludio\DoctrineEntityFactoryBundle\Tests\Dummy\TestEntity\Hobby
+    phone: Fludio\DoctrineEntityFactoryBundle\Tests\Dummy\TestEntity\Phone

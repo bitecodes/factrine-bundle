@@ -7,6 +7,7 @@ use Fludio\DoctrineEntityFactoryBundle\Factory\Factory;
 use Fludio\DoctrineEntityFactoryBundle\Factory\ConfigProvider\ConfigLoader;
 use Fludio\DoctrineEntityFactoryBundle\Factory\ConfigProvider\YamlConfigProvider;
 use Fludio\DoctrineEntityFactoryBundle\Factory\Util\EntityBuilder;
+use Fludio\DoctrineEntityFactoryBundle\Factory\Util\PersistanceHelper;
 use Fludio\DoctrineEntityFactoryBundle\Factory\Util\ValueFactory;
 use PHPUnit_Framework_Error;
 use Doctrine\ORM\EntityManager;
@@ -53,8 +54,10 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
 
         $valueFactory = new ValueFactory($configProvider, [$fakerDataProvider]);
 
+        $persistanceHelper = new PersistanceHelper($this->em);
+
         $entityBuilder = new \Fludio\DoctrineEntityFactoryBundle\Factory\EntityBuilder\EntityBuilder($this->em);
-        $this->factory = new Factory($this->em, $entityBuilder, $valueFactory);
+        $this->factory = new Factory($entityBuilder, $valueFactory, $persistanceHelper);
     }
 
     /**

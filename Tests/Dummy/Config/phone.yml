@@ -1,0 +1,3 @@
+Fludio\DoctrineEntityFactoryBundle\Tests\Dummy\TestEntity\Phone:
+    number: faker.phoneNumber
+    apps: Fludio\DoctrineEntityFactoryBundle\Tests\Dummy\TestEntity\App

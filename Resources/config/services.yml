@@ -2,9 +2,9 @@ services:
     fludio_factory.factory:
         class: Fludio\DoctrineEntityFactoryBundle\Factory\Factory
         arguments:
-            - @doctrine.orm.entity_manager
             - @fludio_factory.entity_builder
             - @fludio_factory.util.value_factory
+            - @fludio_factory.util.persistance_helper
 
     fludio_factory.entity_builder:
         class: Fludio\DoctrineEntityFactoryBundle\Factory\EntityBuilder\EntityBuilder
@@ -49,6 +49,12 @@ services:
 
     fludio_factory.util.data_guesser:
         class: Fludio\DoctrineEntityFactoryBundle\Factory\Util\DataGuesser
-        public: false;
+        public: false
         arguments:
             - @fludio_factory.data_provider.faker_data_provider
+
+    fludio_factory.util.persistance_helper:
+        class: Fludio\DoctrineEntityFactoryBundle\Factory\Util\PersistanceHelper
+        public: false
+        arguments:
+            - @doctrine.orm.entity_manager

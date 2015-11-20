@@ -2,9 +2,9 @@
 
 namespace Fludio\DoctrineEntityFactoryBundle\Factory;
 
-use Doctrine\Common\Persistence\ObjectManager;
-use Doctrine\ORM\EntityManager;
+use Fludio\DoctrineEntityFactoryBundle\Event;
 use Fludio\DoctrineEntityFactoryBundle\Factory\EntityBuilder\EntityBuilder;
+use Fludio\DoctrineEntityFactoryBundle\Factory\Util\PersistanceHelper;
 use Fludio\DoctrineEntityFactoryBundle\Factory\Util\ValueFactory;
 
 class Factory
@@ -14,10 +14,6 @@ class Factory
      */
     protected $times = 1;
     /**
-     * @var EntityManager
-     */
-    protected $om;
-    /**
      * @var EntityBuilder
      */
     private $entityBuilder;
@@ -25,21 +21,25 @@ class Factory
      * @var ValueFactory
      */
     private $valueFactory;
+    /**
+     * @var PersistanceHelper
+     */
+    private $persistanceHelper;
 
     /**
-     * @param ObjectManager $om
      * @param EntityBuilder $entityBuilder
      * @param ValueFactory $valueFactory
+     * @param PersistanceHelper $persistanceHelper
      */
     public function __construct(
-        ObjectManager $om,
         EntityBuilder $entityBuilder,
-        ValueFactory $valueFactory
+        ValueFactory $valueFactory,
+        PersistanceHelper $persistanceHelper
     )
     {
-        $this->om = $om;
         $this->entityBuilder = $entityBuilder;
         $this->valueFactory = $valueFactory;
+        $this->persistanceHelper = $persistanceHelper;
     }
 
     /**
@@ -75,13 +75,11 @@ class Factory
 
         if(is_array($result)) {
             foreach($result as $entity) {
-                $this->om->persist($entity);
+                $this->persistanceHelper->persist($entity);
             }
         } else {
-            $this->om->persist($result);
+            $this->persistanceHelper->persist($result);
         }
-
-        $this->om->flush();
 
         return $result;
     }
