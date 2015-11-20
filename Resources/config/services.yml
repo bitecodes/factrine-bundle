@@ -4,7 +4,7 @@ services:
         arguments:
             - @fludio_factory.entity_builder
             - @fludio_factory.util.value_factory
-            - @fludio_factory.util.persistance_helper
+            - @fludio_factory.util.persistence_helper
 
     fludio_factory.entity_builder:
         class: Fludio\DoctrineEntityFactoryBundle\Factory\EntityBuilder\EntityBuilder
@@ -53,8 +53,8 @@ services:
         arguments:
             - @fludio_factory.data_provider.faker_data_provider
 
-    fludio_factory.util.persistance_helper:
-        class: Fludio\DoctrineEntityFactoryBundle\Factory\Util\PersistanceHelper
+    fludio_factory.util.persistence_helper:
+        class: Fludio\DoctrineEntityFactoryBundle\Factory\Util\PersistenceHelper
         public: false
         arguments:
             - @doctrine.orm.entity_manager

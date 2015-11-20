@@ -2,12 +2,24 @@
 
 namespace Fluido\DoctrineEntityFactoryBundle\Tests\Factory;
 
+use Fludio\DoctrineEntityFactoryBundle\Factory\Factory;
+use Fludio\DoctrineEntityFactoryBundle\Tests\Dummy\app\AppKernel;
 use Fludio\DoctrineEntityFactoryBundle\Tests\Dummy\TestCase;
 use Fludio\DoctrineEntityFactoryBundle\Tests\Dummy\TestEntity\Address;
 use Fludio\DoctrineEntityFactoryBundle\Tests\Dummy\TestEntity\User;
 
 class FactoryTest extends TestCase
 {
+    /** @test */
+    public function it_can_be_retrieved_from_the_service_container()
+    {
+        $kernel = new AppKernel('test', true);
+        $kernel->boot();
+
+        $factory = $kernel->getContainer()->get('fludio_factory.factory');
+        $this->assertInstanceOf(Factory::class, $factory);
+    }
+
     /** @test */
     public function it_creates_an_entity()
     {
