@@ -2,7 +2,6 @@
 
 namespace Fludio\DoctrineEntityFactoryBundle\Factory;
 
-use Fludio\DoctrineEntityFactoryBundle\Event;
 use Fludio\DoctrineEntityFactoryBundle\Factory\EntityBuilder\EntityBuilder;
 use Fludio\DoctrineEntityFactoryBundle\Factory\Util\PersistenceHelper;
 use Fludio\DoctrineEntityFactoryBundle\Factory\Util\ValueFactory;
