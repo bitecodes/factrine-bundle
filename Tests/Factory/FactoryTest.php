@@ -4,7 +4,6 @@ namespace Fluido\DoctrineEntityFactoryBundle\Tests\Factory;
 
 use Fludio\DoctrineEntityFactoryBundle\Tests\Dummy\TestCase;
 use Fludio\DoctrineEntityFactoryBundle\Tests\Dummy\TestEntity\Address;
-use Fludio\DoctrineEntityFactoryBundle\Tests\Dummy\TestEntity\Hobby;
 use Fludio\DoctrineEntityFactoryBundle\Tests\Dummy\TestEntity\User;
 
 class FactoryTest extends TestCase
