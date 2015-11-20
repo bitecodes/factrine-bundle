@@ -65,7 +65,6 @@ class PersistanceHelper
     private function persistEntity($entity)
     {
         if ($this->isEntity($entity)) {
-//            var_dump($this->em->contains($entity), get_class($entity));
             if(!$this->em->contains($entity)) {
                 $this->em->persist($entity);
                 $this->persistAllAssociations($entity);
