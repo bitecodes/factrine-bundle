@@ -7,7 +7,7 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
 use Symfony\Component\PropertyAccess\PropertyAccessor;
 
-class PersistanceHelper
+class PersistenceHelper
 {
     /**
      * @var EntityManager
@@ -40,6 +40,10 @@ class PersistanceHelper
 
         foreach($meta->getAssociationMappings() as $mapping) {
             $child = $this->accessor->getValue($entity, $mapping['fieldName']);
+
+            if(is_null($child)) {
+                continue;
+            }
 
             if($this->isCollection($mapping)) {
                 $this->persistCollection($child);
@@ -77,7 +81,7 @@ class PersistanceHelper
      */
     private function persistCollection($collection)
     {
-        foreach ($collection as $entity) {
+        foreach($collection as $entity) {
             $this->persistEntity($entity);
         }
     }
@@ -93,8 +97,6 @@ class PersistanceHelper
             $class = ($class instanceof Proxy)
                 ? get_parent_class($class)
                 : get_class($class);
-        } else {
-            return false;
         }
 
         return ! $this->em->getMetadataFactory()->isTransient($class);
