@@ -55,7 +55,7 @@ class EntityBuilder
                 continue;
             }
 
-            if($params->get($field)) {
+            if($params->get($field) !== null) {
                 $this->accessor->setValue($instance, $field, $params->get($field));
             }
         }
@@ -63,7 +63,7 @@ class EntityBuilder
         foreach($meta->getAssociationNames() as $association) {
             $this->handleAssociation($association, $meta, $instance, $params);
         }
-
+        
         if(is_callable($callback)) {
             $instance = $callback($instance);
         }
@@ -77,9 +77,8 @@ class EntityBuilder
      */
     private function prepareParams($params)
     {
-        $params = is_array($params) ? $params : [];
-
         $data = new Data();
+        $params = is_array($params) ? $params : [];
 
         foreach($params as $path => $value) {
             $data->set($path, $value);

@@ -292,4 +292,14 @@ class EntityBuilderTest extends TestCase
         $this->assertEquals('Bart', $homer->getChildren()[0]->getFirstName());
         $this->assertEquals('Lisa', $homer->getChildren()[1]->getFirstName());
     }
+
+    /** @test */
+    public function it_allows_0_as_a_value()
+    {
+        $hobby = $this->builder->createEntity(Hobby::class, [
+            'priority' => 0
+        ]);
+
+        $this->assertTrue(0 === $hobby->getPriority());
+    }
 }
