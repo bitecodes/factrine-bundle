@@ -4,7 +4,7 @@ namespace Fludio\DoctrineEntityFactoryBundle\Factory;
 
 use Fludio\DoctrineEntityFactoryBundle\Event;
 use Fludio\DoctrineEntityFactoryBundle\Factory\EntityBuilder\EntityBuilder;
-use Fludio\DoctrineEntityFactoryBundle\Factory\Util\PersistanceHelper;
+use Fludio\DoctrineEntityFactoryBundle\Factory\Util\PersistenceHelper;
 use Fludio\DoctrineEntityFactoryBundle\Factory\Util\ValueFactory;
 
 class Factory
@@ -22,24 +22,24 @@ class Factory
      */
     private $valueFactory;
     /**
-     * @var PersistanceHelper
+     * @var PersistenceHelper
      */
-    private $persistanceHelper;
+    private $persistenceHelper;
 
     /**
      * @param EntityBuilder $entityBuilder
      * @param ValueFactory $valueFactory
-     * @param PersistanceHelper $persistanceHelper
+     * @param PersistenceHelper $persistenceHelper
      */
     public function __construct(
         EntityBuilder $entityBuilder,
         ValueFactory $valueFactory,
-        PersistanceHelper $persistanceHelper
+        PersistenceHelper $persistenceHelper
     )
     {
         $this->entityBuilder = $entityBuilder;
         $this->valueFactory = $valueFactory;
-        $this->persistanceHelper = $persistanceHelper;
+        $this->persistenceHelper = $persistenceHelper;
     }
 
     /**
@@ -75,10 +75,10 @@ class Factory
 
         if(is_array($result)) {
             foreach($result as $entity) {
-                $this->persistanceHelper->persist($entity);
+                $this->persistenceHelper->persist($entity);
             }
         } else {
-            $this->persistanceHelper->persist($result);
+            $this->persistenceHelper->persist($result);
         }
 
         return $result;
