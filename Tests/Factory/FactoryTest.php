@@ -89,6 +89,15 @@ class FactoryTest extends TestCase
     }
 
     /** @test */
+    public function it_returns_fake_data_for_associtations()
+    {
+        $values = $this->factory->values(User::class);
+
+        $this->assertEquals(3, count($values['address']));
+        $this->assertNotNull($values['address']['street']);
+    }
+
+    /** @test */
     public function it_allows_to_override_fake_values()
     {
         $values = $this->factory->values(Address::class, ['zip' => '01097']);
