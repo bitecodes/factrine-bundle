@@ -54,7 +54,7 @@ class Factory
         $this->times = 1;
 
         for($i = 1; $i <= $loops; $i++) {
-            $data = $this->mergeParams($params, $entity);
+            $data = $this->addFakeValues($params, $entity);
             $result[] = $this->entityBuilder->createEntity($entity, $data, $callback);
         }
 
@@ -97,7 +97,7 @@ class Factory
      * @param $params
      * @return array
      */
-    protected function mergeParams($params, $entity)
+    protected function addFakeValues($params, $entity)
     {
         $fakeValues = $this->valueFactory->getAllValues($entity);
 
