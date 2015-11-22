@@ -117,4 +117,14 @@ class DataGuesserTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals('faker.boolean', $result);
     }
+
+    /** @test */
+    public function it_adds_a_question_mark_for_unknown_types()
+    {
+        $mapping = ['fieldName' => 'isChecked', 'type' => 'strange'];
+
+        $result = $this->guesser->guess($mapping);
+
+        $this->assertEquals('faker.?', $result);
+    }
 }
