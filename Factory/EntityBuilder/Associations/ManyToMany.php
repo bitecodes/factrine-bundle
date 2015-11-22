@@ -57,7 +57,7 @@ class ManyToMany extends AbstractAssociation
         $assocClass = $this->meta->getAssociationTargetClass($this->association);
 
         if(!$data instanceof $assocClass) {
-            $field = (null == $mapping['mappedBy']) ? $mapping['inversedBy'] : $mapping['mappedBy'];
+            $field = (null === $mapping['mappedBy']) ? $mapping['inversedBy'] : $mapping['mappedBy'];
             $data[$field] = $this->instance;
             $entity = $this->entityBuilder->createEntity($assocClass, $data);
         } else {
