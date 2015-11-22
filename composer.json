@@ -1,5 +1,5 @@
 {
-    "name": "fludio/doctrine-entity-factory-bundle",
+    "name": "fludio/factrine-bundle",
     "type": "symfony-bundle",
     "description": "An entity factory for Doctrine2 and Symfony2",
     "license": "MIT",
@@ -28,8 +28,8 @@
     },
     "autoload": {
         "psr-0": {
-            "Fludio\\DoctrineEntityFactoryBundle\\": ""
+            "Fludio\\FactrineBundle\\": ""
         }
     },
-    "target-dir": "Fludio/DoctrineEntityFactoryBundle"
+    "target-dir": "Fludio/FactrineBundle"
 }

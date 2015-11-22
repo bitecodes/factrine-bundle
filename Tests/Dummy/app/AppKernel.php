@@ -1,10 +1,10 @@
 <?php
 
 
-namespace Fludio\DoctrineEntityFactoryBundle\Tests\Dummy\app;
+namespace Fludio\FactrineBundle\Tests\Dummy\app;
 
 use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
-use Fludio\DoctrineEntityFactoryBundle\FludioDoctrineEntityFactoryBundle;
+use Fludio\FactrineBundle\FludioFactrineBundle;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\HttpKernel\Kernel;
@@ -16,7 +16,7 @@ class AppKernel extends Kernel
         $bundles = [
             new FrameworkBundle(),
             new DoctrineBundle(),
-            new FludioDoctrineEntityFactoryBundle()
+            new FludioFactrineBundle()
         ];
 
         return $bundles;

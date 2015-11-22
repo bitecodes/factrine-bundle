@@ -1,60 +1,60 @@
 services:
     fludio_factory.factory:
-        class: Fludio\DoctrineEntityFactoryBundle\Factory\Factory
+        class: Fludio\FactrineBundle\Factory\Factory
         arguments:
             - @fludio_factory.entity_builder
             - @fludio_factory.util.value_factory
             - @fludio_factory.util.persistence_helper
 
     fludio_factory.entity_builder:
-        class: Fludio\DoctrineEntityFactoryBundle\Factory\EntityBuilder\EntityBuilder
+        class: Fludio\FactrineBundle\Factory\EntityBuilder\EntityBuilder
         public: false
         arguments:
             - @doctrine.orm.entity_manager
             - @fludio_factory.config_provider.yaml_config_provider
 
     fludio_factory.schema_reader:
-        class: Fludio\DoctrineEntityFactoryBundle\Factory\Util\SchemaReader
+        class: Fludio\FactrineBundle\Factory\Util\SchemaReader
         arguments:
             - @doctrine.orm.entity_manager
 
     fludio_factory.config_provider.config_loader:
-        class: Fludio\DoctrineEntityFactoryBundle\Factory\ConfigProvider\ConfigLoader
+        class: Fludio\FactrineBundle\Factory\ConfigProvider\ConfigLoader
         public: false
         arguments: [{}]
 
     fludio_factory.config_provider.config_generator:
-        class: Fludio\DoctrineEntityFactoryBundle\Factory\ConfigProvider\ConfigGenerator
+        class: Fludio\FactrineBundle\Factory\ConfigProvider\ConfigGenerator
         arguments:
             - @doctrine.orm.entity_manager
             - @fludio_factory.util.data_guesser
             - @kernel
 
     fludio_factory.config_provider.yaml_config_provider:
-        class: Fludio\DoctrineEntityFactoryBundle\Factory\ConfigProvider\YamlConfigProvider
+        class: Fludio\FactrineBundle\Factory\ConfigProvider\YamlConfigProvider
         public: false
         arguments:
             - @fludio_factory.config_provider.config_loader
 
     fludio_factory.data_provider.faker_data_provider:
-        class: Fludio\DoctrineEntityFactoryBundle\Factory\DataProvider\FakerDataProvider
+        class: Fludio\FactrineBundle\Factory\DataProvider\FakerDataProvider
         public: false
 
     fludio_factory.util.value_factory:
-        class: Fludio\DoctrineEntityFactoryBundle\Factory\Util\ValueFactory
+        class: Fludio\FactrineBundle\Factory\Util\ValueFactory
         public: false
         arguments:
             - @fludio_factory.config_provider.yaml_config_provider
             - [@fludio_factory.data_provider.faker_data_provider]
 
     fludio_factory.util.data_guesser:
-        class: Fludio\DoctrineEntityFactoryBundle\Factory\Util\DataGuesser
+        class: Fludio\FactrineBundle\Factory\Util\DataGuesser
         public: false
         arguments:
             - @fludio_factory.data_provider.faker_data_provider
 
     fludio_factory.util.persistence_helper:
-        class: Fludio\DoctrineEntityFactoryBundle\Factory\Util\PersistenceHelper
+        class: Fludio\FactrineBundle\Factory\Util\PersistenceHelper
         public: false
         arguments:
             - @doctrine.orm.entity_manager

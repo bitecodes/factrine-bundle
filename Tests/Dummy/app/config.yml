@@ -1,5 +1,5 @@
 imports:
-    - { resource: @FludioDoctrineEntityFactoryBundle/Resources/config/services.yml }
+    - { resource: @FludioFactrineBundle/Resources/config/services.yml }
 
 framework:
     secret: "DirtySecret"

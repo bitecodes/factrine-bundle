@@ -1,23 +1,23 @@
 <?php
 
-namespace Fludio\DoctrineEntityFactoryBundle\Tests\Factory\EntityBuilder;
+namespace Fludio\FactrineBundle\Tests\Factory\EntityBuilder;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Fludio\DoctrineEntityFactoryBundle\Factory\EntityBuilder\EntityBuilder;
-use Fludio\DoctrineEntityFactoryBundle\Tests\Dummy\TestCase;
-use Fludio\DoctrineEntityFactoryBundle\Tests\Dummy\TestEntity\Address;
-use Fludio\DoctrineEntityFactoryBundle\Tests\Dummy\TestEntity\App;
-use Fludio\DoctrineEntityFactoryBundle\Tests\Dummy\TestEntity\Category;
-use Fludio\DoctrineEntityFactoryBundle\Tests\Dummy\TestEntity\EmailAddress;
-use Fludio\DoctrineEntityFactoryBundle\Tests\Dummy\TestEntity\Group;
-use Fludio\DoctrineEntityFactoryBundle\Tests\Dummy\TestEntity\Hobby;
-use Fludio\DoctrineEntityFactoryBundle\Tests\Dummy\TestEntity\Job;
-use Fludio\DoctrineEntityFactoryBundle\Tests\Dummy\TestEntity\Phone;
-use Fludio\DoctrineEntityFactoryBundle\Tests\Dummy\TestEntity\User;
+use Fludio\FactrineBundle\Factory\EntityBuilder\EntityBuilder;
+use Fludio\FactrineBundle\Tests\Dummy\TestCase;
+use Fludio\FactrineBundle\Tests\Dummy\TestEntity\Address;
+use Fludio\FactrineBundle\Tests\Dummy\TestEntity\App;
+use Fludio\FactrineBundle\Tests\Dummy\TestEntity\Category;
+use Fludio\FactrineBundle\Tests\Dummy\TestEntity\EmailAddress;
+use Fludio\FactrineBundle\Tests\Dummy\TestEntity\Group;
+use Fludio\FactrineBundle\Tests\Dummy\TestEntity\Hobby;
+use Fludio\FactrineBundle\Tests\Dummy\TestEntity\Job;
+use Fludio\FactrineBundle\Tests\Dummy\TestEntity\Phone;
+use Fludio\FactrineBundle\Tests\Dummy\TestEntity\User;
 
 /**
  * Class EntityBuilderTest
- * @package Fludio\DoctrineEntityFactoryBundle\Tests\Factory\EntityBuilder
+ * @package Fludio\FactrineBundle\Tests\Factory\EntityBuilder
  */
 class EntityBuilderTest extends TestCase
 {

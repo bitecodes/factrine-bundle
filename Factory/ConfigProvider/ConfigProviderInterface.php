@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Fludio\DoctrineEntityFactoryBundle\Factory\ConfigProvider;
+namespace Fludio\FactrineBundle\Factory\ConfigProvider;
 
 interface ConfigProviderInterface
 {

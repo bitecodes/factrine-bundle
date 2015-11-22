@@ -1,8 +1,6 @@
 <?php
 
-
-namespace Fludio\DoctrineEntityFactoryBundle\Tests\DependencyInjection;
-
+namespace Fludio\FactrineBundle\Tests\DependencyInjection;
 
 use Symfony\Component\Yaml\Parser;
 

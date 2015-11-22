@@ -1,6 +1,6 @@
 <?php
 
-namespace Fludio\DoctrineEntityFactoryBundle\Command;
+namespace Fludio\FactrineBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;

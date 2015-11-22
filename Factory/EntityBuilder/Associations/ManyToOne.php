@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Fludio\DoctrineEntityFactoryBundle\Factory\EntityBuilder\Associations;
+namespace Fludio\FactrineBundle\Factory\EntityBuilder\Associations;
 
 class ManyToOne extends AbstractAssociation
 {

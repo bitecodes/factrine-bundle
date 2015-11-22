@@ -1,14 +1,14 @@
 <?php
 
 
-namespace Fludio\DoctrineEntityFactoryBundle\Tests\Factory\ConfigProvider;
+namespace Fludio\FactrineBundle\Tests\Factory\ConfigProvider;
 
-use Fludio\DoctrineEntityFactoryBundle\Factory\DataProvider\FakerDataProvider;
-use Fludio\DoctrineEntityFactoryBundle\Factory\Util\DataGuesser;
-use Fludio\DoctrineEntityFactoryBundle\Factory\ConfigProvider\ConfigGenerator;
-use Fludio\DoctrineEntityFactoryBundle\Tests\Dummy\app\AppKernel;
-use Fludio\DoctrineEntityFactoryBundle\Tests\Dummy\TestCase;
-use Fludio\DoctrineEntityFactoryBundle\Tests\Dummy\TestEntity\Address;
+use Fludio\FactrineBundle\Factory\DataProvider\FakerDataProvider;
+use Fludio\FactrineBundle\Factory\Util\DataGuesser;
+use Fludio\FactrineBundle\Factory\ConfigProvider\ConfigGenerator;
+use Fludio\FactrineBundle\Tests\Dummy\app\AppKernel;
+use Fludio\FactrineBundle\Tests\Dummy\TestCase;
+use Fludio\FactrineBundle\Tests\Dummy\TestEntity\Address;
 
 class ConfigGeneratorTest extends TestCase
 {

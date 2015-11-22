@@ -1,9 +1,9 @@
 <?php
 
 
-namespace Fludio\DoctrineEntityFactoryBundle\Factory\Util;
+namespace Fludio\FactrineBundle\Factory\Util;
 
-use Fludio\DoctrineEntityFactoryBundle\Factory\DataProvider\FakerDataProvider;
+use Fludio\FactrineBundle\Factory\DataProvider\FakerDataProvider;
 
 class DataGuesser
 {

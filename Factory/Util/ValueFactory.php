@@ -1,8 +1,8 @@
 <?php
 
-namespace Fludio\DoctrineEntityFactoryBundle\Factory\Util;
+namespace Fludio\FactrineBundle\Factory\Util;
 
-use Fludio\DoctrineEntityFactoryBundle\Factory\ConfigProvider\ConfigProviderInterface;
+use Fludio\FactrineBundle\Factory\ConfigProvider\ConfigProviderInterface;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 
 class ValueFactory

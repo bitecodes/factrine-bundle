@@ -1,11 +1,11 @@
 <?php
 
 
-namespace Fludio\DoctrineEntityFactoryBundle\Tests\Factory\Util;
+namespace Fludio\FactrineBundle\Tests\Factory\Util;
 
 
-use Fludio\DoctrineEntityFactoryBundle\Factory\DataProvider\FakerDataProvider;
-use Fludio\DoctrineEntityFactoryBundle\Factory\Util\DataGuesser;
+use Fludio\FactrineBundle\Factory\DataProvider\FakerDataProvider;
+use Fludio\FactrineBundle\Factory\Util\DataGuesser;
 
 class DataGuesserTest extends \PHPUnit_Framework_TestCase
 {

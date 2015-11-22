@@ -1,14 +1,14 @@
 <?php
 
 
-namespace Fludio\DoctrineEntityFactoryBundle\Tests\Factory\Util;
+namespace Fludio\FactrineBundle\Tests\Factory\Util;
 
-use Fludio\DoctrineEntityFactoryBundle\Factory\ConfigProvider\ConfigLoader;
-use Fludio\DoctrineEntityFactoryBundle\Factory\ConfigProvider\YamlConfigProvider;
-use Fludio\DoctrineEntityFactoryBundle\Factory\DataProvider\FakerDataProvider;
-use Fludio\DoctrineEntityFactoryBundle\Factory\Util\ValueFactory;
-use Fludio\DoctrineEntityFactoryBundle\Tests\Dummy\TestCase;
-use Fludio\DoctrineEntityFactoryBundle\Tests\Dummy\TestEntity\Phone;
+use Fludio\FactrineBundle\Factory\ConfigProvider\ConfigLoader;
+use Fludio\FactrineBundle\Factory\ConfigProvider\YamlConfigProvider;
+use Fludio\FactrineBundle\Factory\DataProvider\FakerDataProvider;
+use Fludio\FactrineBundle\Factory\Util\ValueFactory;
+use Fludio\FactrineBundle\Tests\Dummy\TestCase;
+use Fludio\FactrineBundle\Tests\Dummy\TestEntity\Phone;
 
 class ValueFactoryTest extends TestCase
 {

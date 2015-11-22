@@ -1,6 +1,6 @@
 <?php
 
-namespace Fludio\DoctrineEntityFactoryBundle\Factory\DataProvider;
+namespace Fludio\FactrineBundle\Factory\DataProvider;
 
 use Faker\Factory;
 

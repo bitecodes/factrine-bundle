@@ -1,15 +1,15 @@
 <?php
 
-namespace Fludio\DoctrineEntityFactoryBundle\Factory\EntityBuilder;
+namespace Fludio\FactrineBundle\Factory\EntityBuilder;
 
 use Dflydev\DotAccessData\Data;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
-use Fludio\DoctrineEntityFactoryBundle\Factory\EntityBuilder\Associations\ManyToMany;
-use Fludio\DoctrineEntityFactoryBundle\Factory\EntityBuilder\Associations\ManyToOne;
-use Fludio\DoctrineEntityFactoryBundle\Factory\EntityBuilder\Associations\OneToMany;
-use Fludio\DoctrineEntityFactoryBundle\Factory\EntityBuilder\Associations\OneToOne;
+use Fludio\FactrineBundle\Factory\EntityBuilder\Associations\ManyToMany;
+use Fludio\FactrineBundle\Factory\EntityBuilder\Associations\ManyToOne;
+use Fludio\FactrineBundle\Factory\EntityBuilder\Associations\OneToMany;
+use Fludio\FactrineBundle\Factory\EntityBuilder\Associations\OneToOne;
 use Symfony\Component\PropertyAccess\PropertyAccessor;
 
 /**

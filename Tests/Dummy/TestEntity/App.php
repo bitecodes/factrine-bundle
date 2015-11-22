@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Fludio\DoctrineEntityFactoryBundle\Tests\Dummy\TestEntity;
+namespace Fludio\FactrineBundle\Tests\Dummy\TestEntity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 

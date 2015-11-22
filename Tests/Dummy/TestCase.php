@@ -1,14 +1,14 @@
 <?php
 
-namespace Fludio\DoctrineEntityFactoryBundle\Tests\Dummy;
+namespace Fludio\FactrineBundle\Tests\Dummy;
 
-use Fludio\DoctrineEntityFactoryBundle\Factory\DataProvider\FakerDataProvider;
-use Fludio\DoctrineEntityFactoryBundle\Factory\EntityBuilder\EntityBuilder;
-use Fludio\DoctrineEntityFactoryBundle\Factory\Factory;
-use Fludio\DoctrineEntityFactoryBundle\Factory\ConfigProvider\ConfigLoader;
-use Fludio\DoctrineEntityFactoryBundle\Factory\ConfigProvider\YamlConfigProvider;
-use Fludio\DoctrineEntityFactoryBundle\Factory\Util\PersistenceHelper;
-use Fludio\DoctrineEntityFactoryBundle\Factory\Util\ValueFactory;
+use Fludio\FactrineBundle\Factory\DataProvider\FakerDataProvider;
+use Fludio\FactrineBundle\Factory\EntityBuilder\EntityBuilder;
+use Fludio\FactrineBundle\Factory\Factory;
+use Fludio\FactrineBundle\Factory\ConfigProvider\ConfigLoader;
+use Fludio\FactrineBundle\Factory\ConfigProvider\YamlConfigProvider;
+use Fludio\FactrineBundle\Factory\Util\PersistenceHelper;
+use Fludio\FactrineBundle\Factory\Util\ValueFactory;
 use Doctrine\ORM\EntityManager;
 
 abstract class TestCase extends \PHPUnit_Framework_TestCase
@@ -37,7 +37,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
         $this->testDb = new TestDb(
             $here . '/TestEntity',
             $here . '/TestProxy',
-            'Fludio\DoctrineEntityFactoryBundle\Tests\Dummy\TestEntity'
+            'Fludio\FactrineBundle\Tests\Dummy\TestEntity'
         );
 
         $this->em = $this->testDb->createEntityManager();

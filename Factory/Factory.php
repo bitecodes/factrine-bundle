@@ -1,10 +1,10 @@
 <?php
 
-namespace Fludio\DoctrineEntityFactoryBundle\Factory;
+namespace Fludio\FactrineBundle\Factory;
 
-use Fludio\DoctrineEntityFactoryBundle\Factory\EntityBuilder\EntityBuilder;
-use Fludio\DoctrineEntityFactoryBundle\Factory\Util\PersistenceHelper;
-use Fludio\DoctrineEntityFactoryBundle\Factory\Util\ValueFactory;
+use Fludio\FactrineBundle\Factory\EntityBuilder\EntityBuilder;
+use Fludio\FactrineBundle\Factory\Util\PersistenceHelper;
+use Fludio\FactrineBundle\Factory\Util\ValueFactory;
 
 class Factory
 {

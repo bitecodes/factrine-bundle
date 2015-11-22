@@ -1,6 +1,6 @@
 <?php
 
-namespace Fludio\DoctrineEntityFactoryBundle\Factory\Util;
+namespace Fludio\FactrineBundle\Factory\Util;
 
 use Doctrine\Common\Persistence\Proxy;
 use Doctrine\ORM\EntityManager;

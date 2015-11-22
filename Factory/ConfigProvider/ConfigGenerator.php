@@ -1,10 +1,10 @@
 <?php
 
-namespace Fludio\DoctrineEntityFactoryBundle\Factory\ConfigProvider;
+namespace Fludio\FactrineBundle\Factory\ConfigProvider;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\ClassMetadata;
-use Fludio\DoctrineEntityFactoryBundle\Factory\Util\DataGuesser;
+use Fludio\FactrineBundle\Factory\Util\DataGuesser;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\HttpKernel\Kernel;
 

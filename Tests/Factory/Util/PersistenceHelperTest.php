@@ -1,16 +1,16 @@
 <?php
 
 
-namespace Fludio\DoctrineEntityFactoryBundle\Tests\Factory\Util;
+namespace Fludio\FactrineBundle\Tests\Factory\Util;
 
-use Fludio\DoctrineEntityFactoryBundle\Factory\Util\PersistenceHelper;
-use Fludio\DoctrineEntityFactoryBundle\Tests\Dummy\TestCase;
-use Fludio\DoctrineEntityFactoryBundle\Tests\Dummy\TestEntity\App;
-use Fludio\DoctrineEntityFactoryBundle\Tests\Dummy\TestEntity\Phone;
+use Fludio\FactrineBundle\Factory\Util\PersistenceHelper;
+use Fludio\FactrineBundle\Tests\Dummy\TestCase;
+use Fludio\FactrineBundle\Tests\Dummy\TestEntity\App;
+use Fludio\FactrineBundle\Tests\Dummy\TestEntity\Phone;
 
 /**
  * Class PersistanceHelperTest
- * @package Fludio\DoctrineEntityFactoryBundle\Tests\Factory\Util
+ * @package Fludio\FactrineBundle\Tests\Factory\Util
  */
 class PersistenceHelperTest extends TestCase
 {
