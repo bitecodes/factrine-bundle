@@ -13,7 +13,7 @@ class ManyToMany extends AbstractAssociation
         if($data === false) {
             return;
         } elseif (!$data instanceof $assocClass) {
-            if(is_null($mapping['mappedBy'])) {
+            if(null === $mapping['mappedBy']) {
                 $data[$mapping['inversedBy']] = $this->instance;
                 $data[$mapping['fieldName']] = false;
             } else {
@@ -57,7 +57,7 @@ class ManyToMany extends AbstractAssociation
         $assocClass = $this->meta->getAssociationTargetClass($this->association);
 
         if(!$data instanceof $assocClass) {
-            $field = is_null($mapping['mappedBy']) ? $mapping['inversedBy'] : $mapping['mappedBy'];
+            $field = (null == $mapping['mappedBy']) ? $mapping['inversedBy'] : $mapping['mappedBy'];
             $data[$field] = $this->instance;
             $entity = $this->entityBuilder->createEntity($assocClass, $data);
         } else {

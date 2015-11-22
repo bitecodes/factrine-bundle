@@ -32,7 +32,7 @@ class TestDb
         $config->setMetadataCacheImpl($cache);
         $config->setQueryCacheImpl($cache);
         $config->setMetadataDriverImpl(
-            $config->newDefaultAnnotationDriver($annotationPath)
+            $config->newDefaultAnnotationDriver([$annotationPath])
         );
         $config->setProxyDir($proxyDir);
         $config->setProxyNamespace($proxyNamespace);

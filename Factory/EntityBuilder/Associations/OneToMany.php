@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Fludio\DoctrineEntityFactoryBundle\Factory\EntityBuilder\Associations;
-
 
 class OneToMany extends AbstractAssociation
 {

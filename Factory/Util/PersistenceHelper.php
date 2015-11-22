@@ -41,7 +41,7 @@ class PersistenceHelper
         foreach($meta->getAssociationMappings() as $mapping) {
             $child = $this->accessor->getValue($entity, $mapping['fieldName']);
 
-            if(is_null($child)) {
+            if(null === $child) {
                 continue;
             }
 

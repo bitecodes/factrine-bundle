@@ -82,7 +82,7 @@ abstract class AbstractAssociation
     {
         $mapping = $this->meta->getAssociationMapping($this->association);
 
-        return is_null($mapping['mappedBy']) && is_null($mapping['inversedBy']);
+        return null === $mapping['mappedBy'] && null === $mapping['inversedBy'];
     }
 
     private function isBiDirectional()

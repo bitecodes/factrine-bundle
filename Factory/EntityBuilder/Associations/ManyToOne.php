@@ -13,7 +13,7 @@ class ManyToOne extends AbstractAssociation
 
         // Check if data is already a concrete entity
         if(!$data instanceof $assocClass) {
-            $field = is_null($mapping['mappedBy']) ? $mapping['inversedBy'] : $mapping['mappedBy'];
+            $field = (null === $mapping['mappedBy']) ? $mapping['inversedBy'] : $mapping['mappedBy'];
             $data[$mapping['fieldName']] = $this->instance;
             $data[$field] = $this->instance;
             $entity = $this->entityBuilder->createEntity($assocClass, $data);
@@ -56,7 +56,7 @@ class ManyToOne extends AbstractAssociation
         $assocClass = $this->meta->getAssociationTargetClass($this->association);
 
         if(!$data instanceof $assocClass) {
-            $field = is_null($mapping['mappedBy']) ? $mapping['inversedBy'] : $mapping['mappedBy'];
+            $field = (null === $mapping['mappedBy']) ? $mapping['inversedBy'] : $mapping['mappedBy'];
             $data[$field] = $this->instance;
             $entity = $this->entityBuilder->createEntity($assocClass, $data);
         } else {

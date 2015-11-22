@@ -3,16 +3,13 @@
 namespace Fludio\DoctrineEntityFactoryBundle\Tests\Dummy;
 
 use Fludio\DoctrineEntityFactoryBundle\Factory\DataProvider\FakerDataProvider;
+use Fludio\DoctrineEntityFactoryBundle\Factory\EntityBuilder\EntityBuilder;
 use Fludio\DoctrineEntityFactoryBundle\Factory\Factory;
 use Fludio\DoctrineEntityFactoryBundle\Factory\ConfigProvider\ConfigLoader;
 use Fludio\DoctrineEntityFactoryBundle\Factory\ConfigProvider\YamlConfigProvider;
-use Fludio\DoctrineEntityFactoryBundle\Factory\Util\EntityBuilder;
 use Fludio\DoctrineEntityFactoryBundle\Factory\Util\PersistenceHelper;
 use Fludio\DoctrineEntityFactoryBundle\Factory\Util\ValueFactory;
-use PHPUnit_Framework_Error;
 use Doctrine\ORM\EntityManager;
-use Exception;
-use Symfony\Component\Yaml\Parser;
 
 abstract class TestCase extends \PHPUnit_Framework_TestCase
 {
@@ -56,29 +53,8 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
 
         $persistanceHelper = new PersistenceHelper($this->em);
 
-        $entityBuilder = new \Fludio\DoctrineEntityFactoryBundle\Factory\EntityBuilder\EntityBuilder($this->em);
+        $entityBuilder = new EntityBuilder($this->em);
         $this->factory = new Factory($entityBuilder, $valueFactory, $persistanceHelper);
-    }
-
-    /**
-     * @return Exception
-     */
-    protected function assertThrows($func, $exceptionType = '\Exception')
-    {
-        try {
-            $func();
-        } catch (Exception $e) {
-        }
-        if (!isset($e)) {
-            $this->fail("Expected $exceptionType but nothing was thrown");
-        }
-        if ($e instanceof PHPUnit_Framework_Error) {
-            $this->fail('Expected exception but got a PHP error: ' . $e->getMessage());
-        }
-        if (!($e instanceof $exceptionType)) {
-            $this->fail("Excpected $exceptionType but " . get_class($e) . " was thrown");
-        }
-        return $e;
     }
 
     protected function seeInDatabase($entity, $criteria)

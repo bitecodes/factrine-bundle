@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Fludio\DoctrineEntityFactoryBundle\Factory\ConfigProvider;
 
 use Doctrine\ORM\EntityManager;
