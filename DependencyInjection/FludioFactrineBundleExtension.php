@@ -31,9 +31,9 @@ class FludioFactrineBundleExtension extends Extension
         if ($config['auto_detection']) {
             foreach ($bundles as $name => $class) {
                 $ref = new \ReflectionClass($class);
-                $directory = dirname($ref->getFileName()).'/Resources/config/entity-factory';
+                $directory = dirname($ref->getFileName()).'/Resources/config/factrine';
                 if(file_exists($directory)) {
-                    $directories[$ref->getNamespaceName()] = dirname($ref->getFileName()).'/Resources/config/entity-factory';
+                    $directories[$ref->getNamespaceName()] = dirname($ref->getFileName()).'/Resources/config/factrine';
                 }
             }
         }

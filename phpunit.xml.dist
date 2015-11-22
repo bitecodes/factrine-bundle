@@ -2,7 +2,7 @@
 
 <phpunit bootstrap="./vendor/autoload.php">
     <testsuites>
-        <testsuite name="Doctrine Entity Factory Bundle">
+        <testsuite name="Factrine Bundle">
             <directory suffix="Test.php">./Tests</directory>
         </testsuite>
     </testsuites>

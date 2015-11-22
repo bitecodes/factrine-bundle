@@ -29,7 +29,7 @@ class DoctrineSeedEntityCommand extends ContainerAwareCommand
     }
 
     protected function execute(InputInterface $input, OutputInterface $output) {
-        $factory = $this->getContainer()->get('fludio_factory.factory');
+        $factory = $this->getContainer()->get('factrine');
         $entity = $input->getArgument('source');
         $times = $input->getOption('times');
 

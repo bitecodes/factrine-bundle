@@ -21,7 +21,7 @@ class DoctrineGenerateFactoryFileCommand extends ContainerAwareCommand
     {
         $dumper = new Dumper();
         $kernel = $this->getContainer()->get('kernel');
-        $generator = $this->getContainer()->get('fludio_factory.config_provider.config_generator');
+        $generator = $this->getContainer()->get('factrine.config_provider.config_generator');
 
         $bundles = $kernel->getBundles();
         $configs = $generator->generate();

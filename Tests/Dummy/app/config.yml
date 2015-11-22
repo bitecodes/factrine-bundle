@@ -6,8 +6,8 @@ framework:
 
 doctrine:
     dbal:
-        driver:   pdo_sqlite
-        charset:  UTF8
+        driver: pdo_sqlite
+        charset: UTF8
         memory: true
 
     orm:
