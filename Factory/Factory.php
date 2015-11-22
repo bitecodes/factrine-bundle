@@ -49,12 +49,15 @@ class Factory
      */
     public function make($entity, array $params = [], \Closure $callback = null)
     {
-        $result = [];
-        $loops = $this->times;
-        $this->times = 1;
+        $isSingular = $this->times == 1;
 
-        for($i = 1; $i <= $loops; $i++) {
-            $data = $this->addFakeValues($params, $entity);
+        $dataSet = $this->values($entity, $params);
+
+        if($isSingular) {
+            $dataSet = [$dataSet];
+        }
+
+        foreach($dataSet as $data) {
             $result[] = $this->entityBuilder->createEntity($entity, $data, $callback);
         }
 
@@ -83,6 +86,26 @@ class Factory
     }
 
     /**
+     * @param $entity
+     * @param array $params
+     * @return array
+     */
+    public function values($entity, array $params = [])
+    {
+        $result = [];
+        $loops = $this->times;
+        $this->times = 1;
+
+        for($i = 1; $i <= $loops; $i++) {
+            $fakeValues = $this->valueFactory->getAllValues($entity);
+
+            $result[] = array_merge($fakeValues, $params);
+        }
+
+        return count($result) > 1 ? $result : array_pop($result);
+    }
+
+    /**
      * @param $times
      * @return $this
      */
@@ -91,16 +114,5 @@ class Factory
         $this->times = $times;
 
         return $this;
-    }
-
-    /**
-     * @param $params
-     * @return array
-     */
-    protected function addFakeValues($params, $entity)
-    {
-        $fakeValues = $this->valueFactory->getAllValues($entity);
-
-        return array_merge($fakeValues, $params);
     }
 }

@@ -65,6 +65,38 @@ class FactoryTest extends TestCase
     }
 
     /** @test */
+    public function it_returns_fake_data_for_an_entity()
+    {
+        $values = $this->factory->values(Address::class);
+        
+        $this->assertNotNull($values['street']);
+        $this->assertNotNull($values['city']);
+        $this->assertNotNull($values['zip']);
+    }
+
+    /** @test */
+    public function it_returns_fake_data_multiple_times()
+    {
+        $values = $this->factory->times(2)->values(Address::class);
+
+        $this->assertEquals(2, count($values));
+        $this->assertNotNull($values[0]['street']);
+        $this->assertNotNull($values[0]['city']);
+        $this->assertNotNull($values[0]['zip']);
+        $this->assertNotNull($values[1]['street']);
+        $this->assertNotNull($values[1]['city']);
+        $this->assertNotNull($values[1]['zip']);
+    }
+
+    /** @test */
+    public function it_allows_to_override_fake_values()
+    {
+        $values = $this->factory->values(Address::class, ['zip' => '01097']);
+
+        $this->assertEquals('01097', $values['zip']);
+    }
+
+    /** @test */
     public function it_adds_fake_data_from_config_files()
     {
         $address = $this->factory->create(Address::class);
