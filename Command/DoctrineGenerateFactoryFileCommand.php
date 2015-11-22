@@ -13,7 +13,7 @@ class DoctrineGenerateFactoryFileCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('doctrine:generate:factory-file')
+            ->setName('factrine:generate:files')
             ->setDescription('It generates the factory files for your entities.');
     }
 

@@ -12,7 +12,7 @@ class DoctrineSeedEntityCommand extends ContainerAwareCommand
 {
     protected function configure() {
         $this
-            ->setName('doctrine:seed:entity')
+            ->setName('factrine:seed:entity')
             ->setDescription('Seed an entity')
             ->addArgument(
                 'source',
