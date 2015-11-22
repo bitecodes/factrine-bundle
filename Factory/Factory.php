@@ -53,10 +53,9 @@ class Factory
         $loops = $this->times;
         $this->times = 1;
 
-        $params = $this->mergeParams($params, $entity);
-
         for($i = 1; $i <= $loops; $i++) {
-            $result[] = $this->entityBuilder->createEntity($entity, $params, $callback);
+            $data = $this->mergeParams($params, $entity);
+            $result[] = $this->entityBuilder->createEntity($entity, $data, $callback);
         }
 
         return count($result) > 1 ? $result : array_pop($result);

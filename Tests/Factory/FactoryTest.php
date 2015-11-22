@@ -87,6 +87,28 @@ class FactoryTest extends TestCase
     }
 
     /** @test */
+    public function it_generates_different_data_when_multiple_entities_are_generated()
+    {
+        $addresses = $this->factory->times(2)->make(Address::class);
+        $address1 = $addresses[0];
+        $address2 = $addresses[1];
+
+        $data1 = [
+            $address1->getStreet(),
+            $address1->getCity(),
+            $address1->getZip(),
+        ];
+
+        $data2 = [
+            $address2->getStreet(),
+            $address2->getCity(),
+            $address2->getZip(),
+        ];
+
+        $this->assertNotEquals($data1, $data2);
+    }
+
+    /** @test */
     public function it_persists_deeply_nested_associations()
     {
         $user = $this->factory->create(User::class);
