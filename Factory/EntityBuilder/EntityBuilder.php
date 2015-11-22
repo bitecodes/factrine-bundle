@@ -99,42 +99,39 @@ class EntityBuilder
         $data = $params->get($association);
         if(is_array($data) && isset($data[0])) {
             foreach($data as $index => $set) {
-                $mapping = $meta->getAssociationMapping($association);
-
-                switch($mapping['type']) {
-                    case ClassMetadataInfo::ONE_TO_ONE:
-                        $assoc = new OneToOne($this->accessor, $this);
-                        break;
-                    case ClassMetadataInfo::MANY_TO_ONE:
-                        $assoc = new ManyToOne($this->accessor, $this);
-                        break;
-                    case ClassMetadataInfo::ONE_TO_MANY:
-                        $assoc = new OneToMany($this->accessor, $this);
-                        break;
-                    case ClassMetadataInfo::MANY_TO_MANY:
-                        $assoc = new ManyToMany($this->accessor, $this);
-                        break;
-                }
+                $assoc = $this->getAssocicationHandler($association, $meta);
                 $assoc->handle($association, $meta, $instance, new Data([$association => $set]));
             }
         } else {
-            $mapping = $meta->getAssociationMapping($association);
-
-            switch($mapping['type']) {
-                case ClassMetadataInfo::ONE_TO_ONE:
-                    $assoc = new OneToOne($this->accessor, $this);
-                    break;
-                case ClassMetadataInfo::MANY_TO_ONE:
-                    $assoc = new ManyToOne($this->accessor, $this);
-                    break;
-                case ClassMetadataInfo::ONE_TO_MANY:
-                    $assoc = new OneToMany($this->accessor, $this);
-                    break;
-                case ClassMetadataInfo::MANY_TO_MANY:
-                    $assoc = new ManyToMany($this->accessor, $this);
-                    break;
-            }
+            $assoc = $this->getAssocicationHandler($association, $meta);
             $assoc->handle($association, $meta, $instance, $params);
         }
+    }
+
+    /**
+     * @param $association
+     * @param ClassMetadataInfo $meta
+     * @return ManyToMany|ManyToOne|OneToMany|OneToOne
+     * @throws \Doctrine\ORM\Mapping\MappingException
+     */
+    private function getAssocicationHandler($association, ClassMetadataInfo $meta)
+    {
+        $mapping = $meta->getAssociationMapping($association);
+
+        switch ($mapping['type']) {
+            case ClassMetadataInfo::ONE_TO_ONE:
+                $assoc = new OneToOne($this->accessor, $this);
+                break;
+            case ClassMetadataInfo::MANY_TO_ONE:
+                $assoc = new ManyToOne($this->accessor, $this);
+                break;
+            case ClassMetadataInfo::ONE_TO_MANY:
+                $assoc = new OneToMany($this->accessor, $this);
+                break;
+            case ClassMetadataInfo::MANY_TO_MANY:
+                $assoc = new ManyToMany($this->accessor, $this);
+                break;
+        }
+        return $assoc;
     }
 }
