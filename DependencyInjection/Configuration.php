@@ -18,7 +18,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('fludio_doctrine_entity_factory');
+        $rootNode = $treeBuilder->root('fludio_factrine_bundle');
 
         $rootNode
             ->children()
