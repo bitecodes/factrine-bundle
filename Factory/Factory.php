@@ -49,6 +49,7 @@ class Factory
      */
     public function make($entity, array $params = [], \Closure $callback = null)
     {
+        $result = [];
         $isSingular = $this->times == 1;
 
         $dataSet = $this->values($entity, $params);
