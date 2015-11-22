@@ -8,7 +8,7 @@
 
 ## Create entity files
 
-....
+Will be added later
 
 ## How to use factrine
 
