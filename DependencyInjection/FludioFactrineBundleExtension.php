@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\Loader;
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class FludioDoctrineEntityFactoryExtension extends Extension
+class FludioFactrineBundleExtension extends Extension
 {
     /**
      * {@inheritdoc}
@@ -39,7 +39,7 @@ class FludioDoctrineEntityFactoryExtension extends Extension
         }
 
         $container
-            ->getDefinition('fludio_factory.config_provider.config_loader')
+            ->getDefinition('factrine.config_provider.config_loader')
             ->replaceArgument(0, $directories);
     }
 }

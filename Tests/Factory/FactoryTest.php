@@ -16,7 +16,7 @@ class FactoryTest extends TestCase
         $kernel = new AppKernel('test', true);
         $kernel->boot();
 
-        $factory = $kernel->getContainer()->get('fludio_factory.factory');
+        $factory = $kernel->getContainer()->get('factrine');
         $this->assertInstanceOf(Factory::class, $factory);
     }
 
