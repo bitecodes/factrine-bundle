@@ -93,7 +93,7 @@ class FactoryTest extends TestCase
     {
         $values = $this->factory->values(User::class);
 
-        $this->assertEquals(3, count($values['address']));
+        $this->assertEquals(4, count($values['address']));
         $this->assertNotNull($values['address']['street']);
     }
 

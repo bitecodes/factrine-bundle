@@ -40,6 +40,12 @@ class Address
      */
     private $zip;
 
+    /**
+     * @var array
+     *
+     * @Column(name="roomes", type="array")
+     */
+    private $roomes;
 
     /**
      * Get id
@@ -118,5 +124,24 @@ class Address
     public function getZip()
     {
         return $this->zip;
+    }
+
+    /**
+     * @return array
+     */
+    public function getRoomes()
+    {
+        return $this->roomes;
+    }
+
+    /**
+     * @param array $roomes
+     * @return $this
+     */
+    public function setRoomes($roomes)
+    {
+        $this->roomes = $roomes;
+
+        return $this;
     }
 }

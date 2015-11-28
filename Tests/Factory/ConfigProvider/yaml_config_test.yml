@@ -1,5 +1,8 @@
 My\Address:
     street: "Main Street 10"
     streetNumber: faker.randomElement(["10",'12'])
+    floor: 12
+    roommates: ["John", 'Marie']
     city: 'New York'
+    cozy: true
 

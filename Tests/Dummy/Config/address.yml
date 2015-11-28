@@ -2,3 +2,6 @@ Fludio\FactrineBundle\Tests\Dummy\TestEntity\Address:
     street: "Main Street 10"
     city: faker.city
     zip: faker.postcode
+    roomes:
+        - "Bath room"
+        - faker.randomElement(['Sleeping room'])

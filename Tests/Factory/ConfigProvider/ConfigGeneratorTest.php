@@ -40,6 +40,6 @@ class ConfigGeneratorTest extends TestCase
         
         $this->assertEquals(9, count($configs));
         $this->assertArrayHasKey(Address::class, $configs);
-        $this->assertEquals(3, count($configs[Address::class]));
+        $this->assertEquals(4, count($configs[Address::class]));
     }
 }

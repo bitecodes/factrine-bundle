@@ -42,4 +42,12 @@ class ValueFactoryTest extends TestCase
         $this->assertArrayHasKey('title', $values['apps']);
     }
 
+    /** @test */
+    public function it_handles_array_values()
+    {
+        $values = $this->valueFactory->getAllValues(Address::class);
+
+        $this->assertEquals(['Bath room', 'Sleeping room'], $values['roomes']);
+    }
+
 }

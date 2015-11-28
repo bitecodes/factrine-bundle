@@ -4,46 +4,54 @@ namespace Fludio\FactrineBundle\Tests\Factory\ConfigProvider;
 
 use Fludio\FactrineBundle\Factory\ConfigProvider\ConfigLoader;
 use Fludio\FactrineBundle\Factory\ConfigProvider\YamlConfigProvider;
-use PHPUnit_Framework_MockObject_MockObject;
 
 class YamlConfigProviderTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var YamlConfigProvider
+     * @var array
      */
-    protected $configProvider;
-    /**
-     * @var PHPUnit_Framework_MockObject_MockObject
-     */
-    protected $loader;
+    protected $config;
 
     public function setUp()
     {
         $loader = new ConfigLoader([__DIR__]);
-        $this->configProvider = new YamlConfigProvider($loader);
+        $configProvider = new YamlConfigProvider($loader);
+        $this->config = $configProvider->getConfig();
     }
 
     /** @test */
     public function it_allows_string_values_in_double_quotes()
     {
-        $config = $this->configProvider->getConfig();
-
-        $this->assertArraySubset(['street' => "'Main Street 10'"], $config['My\Address']);
+        $this->assertArraySubset(['street' => "'Main Street 10'"], $this->config['My\Address']);
     }
 
     /** @test */
     public function it_allows_string_values_in_single_quotes()
     {
-        $config = $this->configProvider->getConfig();
-
-        $this->assertArraySubset(['city' => "'New York'"], $config['My\Address']);
+        $this->assertArraySubset(['city' => "'New York'"], $this->config['My\Address']);
     }
 
     /** @test */
     public function it_keeps_quotes_in_strings()
     {
-        $config = $this->configProvider->getConfig();
+        $this->assertArraySubset(['streetNumber' => "faker.randomElement(['10','12'])"], $this->config['My\Address']);
+    }
 
-        $this->assertArraySubset(['streetNumber' => "faker.randomElement(['10','12'])"], $config['My\Address']);
+    /** @test */
+    public function it_allows_booleans()
+    {
+        $this->assertArraySubset(['cozy' => true], $this->config['My\Address']);
+    }
+
+    /** @test */
+    public function it_allows_numbers()
+    {
+        $this->assertArraySubset(['floor' => 12], $this->config['My\Address']);
+    }
+
+    /** @test */
+    public function it_allows_arrays()
+    {
+        $this->assertArraySubset(['roommates' => ["'John'", "'Marie'"]], $this->config['My\Address']);
     }
 }
