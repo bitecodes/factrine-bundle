@@ -25,7 +25,8 @@
         "phpunit/phpunit": "^4.8",
         "satooshi/php-coveralls": "dev-master",
         "symfony/framework-bundle": ">=2.6.0",
-        "symfony/http-kernel": ">=2.6.0"
+        "symfony/http-kernel": ">=2.6.0",
+        "matthiasnoback/symfony-dependency-injection-test": "^0.7.6"
     },
     "autoload": {
         "psr-0": {

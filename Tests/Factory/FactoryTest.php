@@ -6,6 +6,8 @@ use Fludio\FactrineBundle\Factory\Factory;
 use Fludio\FactrineBundle\Tests\Dummy\app\AppKernel;
 use Fludio\FactrineBundle\Tests\Dummy\TestCase;
 use Fludio\FactrineBundle\Tests\Dummy\TestEntity\Address;
+use Fludio\FactrineBundle\Tests\Dummy\TestEntity\App;
+use Fludio\FactrineBundle\Tests\Dummy\TestEntity\Phone;
 use Fludio\FactrineBundle\Tests\Dummy\TestEntity\User;
 
 class FactoryTest extends TestCase
@@ -158,5 +160,17 @@ class FactoryTest extends TestCase
 
         $this->assertEquals(1, $phone->getApps()->count());
         $this->assertNotNull($app->first()->getTitle());
+    }
+
+    /** @test */
+    public function it_creates_multiple_associations()
+    {
+        $apps = $this->factory->times(5)->create(App::class);
+        $phone = $this->factory->create(Phone::class, ['apps' => $apps]);
+
+        $this->assertEquals(5, $phone->getApps()->count());
+        foreach($phone->getApps() as $app) {
+            $this->assertInstanceOf(App::class, $app);
+        }
     }
 }

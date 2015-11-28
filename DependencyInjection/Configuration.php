@@ -23,6 +23,7 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->booleanNode('auto_detection')->defaultTrue()->end()
+                ->scalarNode('locale')->defaultValue('en_US')->end()
             ->end();
 
         return $treeBuilder;
