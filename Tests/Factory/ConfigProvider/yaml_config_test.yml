@@ -1,0 +1,5 @@
+My\Address:
+    street: "Main Street 10"
+    streetNumber: faker.randomElement(["10",'12'])
+    city: 'New York'
+

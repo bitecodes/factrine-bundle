@@ -8,6 +8,7 @@ use Fludio\FactrineBundle\Factory\ConfigProvider\YamlConfigProvider;
 use Fludio\FactrineBundle\Factory\DataProvider\FakerDataProvider;
 use Fludio\FactrineBundle\Factory\Util\ValueFactory;
 use Fludio\FactrineBundle\Tests\Dummy\TestCase;
+use Fludio\FactrineBundle\Tests\Dummy\TestEntity\Address;
 use Fludio\FactrineBundle\Tests\Dummy\TestEntity\Phone;
 
 class ValueFactoryTest extends TestCase
@@ -40,4 +41,5 @@ class ValueFactoryTest extends TestCase
         $this->assertArrayHasKey('apps', $values);
         $this->assertArrayHasKey('title', $values['apps']);
     }
+
 }
