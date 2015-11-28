@@ -31,9 +31,9 @@ class YamlConfigProvider implements ConfigProviderInterface
         foreach($files as $file) {
             $yaml = file_get_contents($file);
 
-            $this->encodeQuotes($yaml);
+            $this->escapeQuotes($yaml);
             $fileConfig = $this->yaml->parse($yaml);
-            $this->decodeQuotes($fileConfig);
+            $this->unescapeQuotes($fileConfig);
 
             $config = array_merge($config, $fileConfig);
         }
@@ -41,14 +41,24 @@ class YamlConfigProvider implements ConfigProviderInterface
         return $config;
     }
 
-    private function encodeQuotes(&$string)
+    /**
+     * Escape quotes before parsing
+     *
+     * @param $string
+     */
+    private function escapeQuotes(&$string)
     {
         $string = preg_replace('/["\']/', "\'", $string);
     }
 
-    private function decodeQuotes(&$fileConfig)
+    /**
+     * Unescape the quotes after parsing
+     *
+     * @param $array
+     */
+    private function unescapeQuotes(&$array)
     {
-        array_walk_recursive($fileConfig, function(&$value) {
+        array_walk_recursive($array, function(&$value) {
             $value = preg_replace("/\\\'/", "'", $value);
         });
     }
