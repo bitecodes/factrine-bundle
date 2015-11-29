@@ -10,6 +10,10 @@ before_install:
   - composer self-update
   - mkdir -p build/logs
 
+matrix:
+    allow_failures:
+        - php: hhvm
+
 install: composer update --prefer-dist
 
 after_script:
