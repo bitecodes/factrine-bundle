@@ -54,3 +54,11 @@ services:
         public: false
         arguments:
             - @doctrine.orm.entity_manager
+
+    factrine.command.seed_entity:
+        class: Fludio\FactrineBundle\Command\FactrineSeedEntityCommand
+        arguments:
+            - @factrine
+            - @doctrine.orm.entity_manager
+        tags:
+            -  { name: console.command }
