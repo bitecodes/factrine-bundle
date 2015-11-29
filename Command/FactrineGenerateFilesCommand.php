@@ -8,7 +8,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\Yaml\Dumper;
 
-class DoctrineGenerateFactoryFileCommand extends ContainerAwareCommand
+class FactrineGenerateFilesCommand extends ContainerAwareCommand
 {
     protected function configure()
     {
