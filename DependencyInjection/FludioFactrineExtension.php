@@ -14,6 +14,11 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
  */
 class FludioFactrineExtension extends Extension
 {
+    public function getAlias()
+    {
+        return 'factrine';
+    }
+
     /**
      * {@inheritdoc}
      */
