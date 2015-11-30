@@ -55,6 +55,16 @@ services:
         arguments:
             - @doctrine.orm.entity_manager
 
+    # Commands
+
+    factrine.command.seed:
+        class: Fludio\FactrineBundle\Command\FactrineSeedCommand
+        arguments:
+            - @factrine
+            - %kernel.root_dir%/seeds/
+        tags:
+            -  { name: console.command }
+
     factrine.command.seed_entity:
         class: Fludio\FactrineBundle\Command\FactrineSeedEntityCommand
         arguments:
