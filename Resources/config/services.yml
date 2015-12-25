@@ -2,16 +2,16 @@ services:
     factrine:
         class: Fludio\FactrineBundle\Factory\Factory
         arguments:
-            - @factrine.entity_builder
-            - @factrine.util.value_factory
-            - @factrine.util.persistence_helper
+            - '@factrine.entity_builder'
+            - '@factrine.util.value_factory'
+            - '@factrine.util.persistence_helper'
 
     factrine.entity_builder:
         class: Fludio\FactrineBundle\Factory\EntityBuilder\EntityBuilder
         public: false
         arguments:
-            - @doctrine.orm.entity_manager
-            - @factrine.config_provider.yaml_config_provider
+            - '@doctrine.orm.entity_manager'
+            - '@factrine.config_provider.yaml_config_provider'
 
     factrine.config_provider.config_loader:
         class: Fludio\FactrineBundle\Factory\ConfigProvider\ConfigLoader
@@ -22,15 +22,15 @@ services:
         class: Fludio\FactrineBundle\Factory\ConfigProvider\ConfigGenerator
         public: false
         arguments:
-            - @doctrine.orm.entity_manager
-            - @factrine.util.data_guesser
-            - @kernel
+            - '@doctrine.orm.entity_manager'
+            - '@factrine.util.data_guesser'
+            - '@kernel'
 
     factrine.config_provider.yaml_config_provider:
         class: Fludio\FactrineBundle\Factory\ConfigProvider\YamlConfigProvider
         public: false
         arguments:
-            - @factrine.config_provider.config_loader
+            - '@factrine.config_provider.config_loader'
 
     factrine.data_provider.faker_data_provider:
         class: Fludio\FactrineBundle\Factory\DataProvider\FakerDataProvider
@@ -40,27 +40,27 @@ services:
         class: Fludio\FactrineBundle\Factory\Util\ValueFactory
         public: false
         arguments:
-            - @factrine.config_provider.yaml_config_provider
-            - [@factrine.data_provider.faker_data_provider]
+            - '@factrine.config_provider.yaml_config_provider'
+            - ['@factrine.data_provider.faker_data_provider']
 
     factrine.util.data_guesser:
         class: Fludio\FactrineBundle\Factory\Util\DataGuesser
         public: false
         arguments:
-            - @factrine.data_provider.faker_data_provider
+            - '@factrine.data_provider.faker_data_provider'
 
     factrine.util.persistence_helper:
         class: Fludio\FactrineBundle\Factory\Util\PersistenceHelper
         public: false
         arguments:
-            - @doctrine.orm.entity_manager
+            - '@doctrine.orm.entity_manager'
 
     # Commands
 
     factrine.command.seed:
         class: Fludio\FactrineBundle\Command\FactrineSeedCommand
         arguments:
-            - @factrine
+            - '@factrine'
             - %kernel.root_dir%/seeds/
         tags:
             -  { name: console.command }
@@ -68,7 +68,7 @@ services:
     factrine.command.seed_entity:
         class: Fludio\FactrineBundle\Command\FactrineSeedEntityCommand
         arguments:
-            - @factrine
-            - @doctrine.orm.entity_manager
+            - '@factrine'
+            - '@doctrine.orm.entity_manager'
         tags:
             -  { name: console.command }
