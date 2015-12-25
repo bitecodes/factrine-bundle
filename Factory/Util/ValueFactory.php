@@ -38,6 +38,10 @@ class ValueFactory
     {
         $data = [];
 
+        if(!isset($this->config[$entity])) {
+            return $data;
+        }
+
         foreach($this->config[$entity] as $field => $expression) {
             if($parent == $expression) {
                 continue;

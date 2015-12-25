@@ -302,4 +302,14 @@ class EntityBuilderTest extends TestCase
 
         $this->assertTrue(0 === $hobby->getPriority());
     }
+
+    /** @test */
+//    public function it_creates_associations_for_both_entities()
+//    {
+//        $app = $this->builder->createEntity(App::class);
+//        $phone = $this->builder->createEntity(Phone::class);
+//
+//        $this->assertEquals($app, $phone->getApps()->first());
+//        $this->assertEquals($phone, $app->getPhones()->toArray()[0]);
+//    }
 }

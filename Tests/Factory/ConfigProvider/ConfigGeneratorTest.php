@@ -38,7 +38,7 @@ class ConfigGeneratorTest extends TestCase
     {
         $configs = $this->generator->generate();
         
-        $this->assertEquals(9, count($configs));
+        $this->assertEquals(10, count($configs));
         $this->assertArrayHasKey(Address::class, $configs);
         $this->assertEquals(4, count($configs[Address::class]));
     }

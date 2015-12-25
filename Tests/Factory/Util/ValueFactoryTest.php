@@ -9,6 +9,7 @@ use Fludio\FactrineBundle\Factory\DataProvider\FakerDataProvider;
 use Fludio\FactrineBundle\Factory\Util\ValueFactory;
 use Fludio\FactrineBundle\Tests\Dummy\TestCase;
 use Fludio\FactrineBundle\Tests\Dummy\TestEntity\Address;
+use Fludio\FactrineBundle\Tests\Dummy\TestEntity\House;
 use Fludio\FactrineBundle\Tests\Dummy\TestEntity\Phone;
 
 class ValueFactoryTest extends TestCase
@@ -48,6 +49,14 @@ class ValueFactoryTest extends TestCase
         $values = $this->valueFactory->getAllValues(Address::class);
 
         $this->assertEquals(['Bath room', 'Sleeping room'], $values['roomes']);
+    }
+
+    /** @test */
+    public function it_returns_an_empty_array_if_not_config_exists()
+    {
+        $values = $this->valueFactory->getAllValues(House::class);
+
+        $this->assertEquals([], $values);
     }
 
 }
