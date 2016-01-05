@@ -20,7 +20,7 @@ services:
 
     factrine.config_provider.config_generator:
         class: Fludio\FactrineBundle\Factory\ConfigProvider\ConfigGenerator
-        public: false
+        public: true
         arguments:
             - '@doctrine.orm.entity_manager'
             - '@factrine.util.data_guesser'
@@ -72,3 +72,11 @@ services:
             - '@doctrine.orm.entity_manager'
         tags:
             -  { name: console.command }
+
+    fludio.command.generate_files:
+        class: Fludio\FactrineBundle\Command\FactrineGenerateFilesCommand
+        arguments:
+            - @factrine.config_provider.config_generator
+            - @kernel
+        tags:
+            - { name: console.command }

@@ -2,14 +2,33 @@
 
 namespace Fludio\FactrineBundle\Command;
 
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Fludio\FactrineBundle\Factory\ConfigProvider\ConfigGenerator;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
+use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Yaml\Dumper;
 
-class FactrineGenerateFilesCommand extends ContainerAwareCommand
+class FactrineGenerateFilesCommand extends Command
 {
+    /**
+     * @var ConfigGenerator
+     */
+    private $generator;
+    /**
+     * @var Kernel
+     */
+    private $kernel;
+
+    public function __construct(ConfigGenerator $generator, Kernel $kernel)
+    {
+        parent::__construct();
+
+        $this->generator = $generator;
+        $this->kernel = $kernel;
+    }
+
     protected function configure()
     {
         $this
@@ -20,26 +39,23 @@ class FactrineGenerateFilesCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $dumper = new Dumper();
-        $kernel = $this->getContainer()->get('kernel');
-        $generator = $this->getContainer()->get('factrine.config_provider.config_generator');
 
-        $bundles = $kernel->getBundles();
-        $configs = $generator->generate();
+        $bundles = $this->kernel->getBundles();
+        $configs = $this->generator->generate();
 
         /** @var Bundle $bundle */
-        foreach($bundles as $bundle) {
-            foreach($configs as $entity => $config) {
-                if(strpos($entity, $bundle->getNamespace()) === false) {
+        foreach ($bundles as $bundle) {
+            foreach ($configs as $entity => $config) {
+                if (strpos($entity, $bundle->getNamespace()) === false) {
                     continue;
                 }
 
                 $refl = new \ReflectionClass($entity);
 
-                $path = $bundle->getPath();
-                $factoryDir = $path . '/Resources/config/factrine/';
+                $factoryDir = $this->getDirectory($bundle);
                 $file = $factoryDir . $refl->getShortName() . '.yml';
 
-                if(!file_exists($factoryDir)) {
+                if (!file_exists($factoryDir)) {
                     mkdir($factoryDir, 0777, true);
                 }
 
@@ -49,5 +65,16 @@ class FactrineGenerateFilesCommand extends ContainerAwareCommand
                 file_put_contents($file, $content);
             }
         }
+    }
+
+    /**
+     * @param $bundle
+     * @return string
+     */
+    protected function getDirectory($bundle)
+    {
+        $path = $bundle->getPath();
+        $factoryDir = $path . '/Resources/config/factrine/';
+        return $factoryDir;
     }
 }

@@ -4,7 +4,9 @@ namespace Fludio\FactrineBundle\Factory\ConfigProvider;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\ClassMetadata;
+use Doctrine\ORM\Mapping\ClassMetadataInfo;
 use Fludio\FactrineBundle\Factory\Util\DataGuesser;
+use Fludio\FactrineBundle\Tests\Dummy\TestEntity\User;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\HttpKernel\Kernel;
 
@@ -37,11 +39,11 @@ class ConfigGenerator
     {
         $config = [];
 
-        foreach($this->bundles as $bundle) {
+        foreach ($this->bundles as $bundle) {
 
             $metadata = $this->getBundleMetadata($bundle);
 
-            foreach($metadata as $meta) {
+            foreach ($metadata as $meta) {
                 $config[$meta->getName()] = $this->getConfig($meta);
             }
         }
@@ -56,9 +58,9 @@ class ConfigGenerator
     protected function getUserBundles(Kernel $kernel)
     {
         $bundles = [];
-        
+
         /** @var Bundle $bundle */
-        foreach($kernel->getBundles() as $bundle) {
+        foreach ($kernel->getBundles() as $bundle) {
             if (strpos($bundle->getPath(), 'vendor') === false) {
                 $bundles[] = $bundle;
             }
@@ -78,8 +80,8 @@ class ConfigGenerator
         $metadata = $this->em->getMetadataFactory()->getAllMetadata();
 
         /** @var ClassMetadata $meta */
-        foreach($metadata as $meta) {
-            if(strpos($meta->getName(), $bundle->getNamespace()) !== false) {
+        foreach ($metadata as $meta) {
+            if (strpos($meta->getName(), $bundle->getNamespace()) !== false) {
                 $bundleMetadata[] = $meta;
             }
         }
@@ -95,12 +97,18 @@ class ConfigGenerator
     {
         $result = [];
 
-        foreach($meta->fieldMappings as $mapping) {
-            if($meta->isIdentifier($mapping['fieldName'])) {
+        foreach ($meta->fieldMappings as $mapping) {
+            if ($meta->isIdentifier($mapping['fieldName'])) {
                 continue;
             }
 
             $result[$mapping['fieldName']] = $this->guesser->guess($mapping);
+        }
+
+        foreach ($meta->associationMappings as $mapping) {
+            if (in_array($mapping['type'], [ClassMetadataInfo::ONE_TO_ONE, ClassMetadataInfo::MANY_TO_ONE])) {
+                $result[$mapping['fieldName']] = $mapping['targetEntity'];
+            }
         }
 
         return $result;
