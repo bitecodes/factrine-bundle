@@ -76,7 +76,7 @@ services:
     fludio.command.generate_files:
         class: Fludio\FactrineBundle\Command\FactrineGenerateFilesCommand
         arguments:
-            - @factrine.config_provider.config_generator
-            - @kernel
+            - '@factrine.config_provider.config_generator'
+            - '@kernel'
         tags:
             - { name: console.command }
