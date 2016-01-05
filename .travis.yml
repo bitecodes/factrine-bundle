@@ -17,4 +17,4 @@ matrix:
 install: composer update --prefer-dist
 
 after_script:
-  - php vendor/bin/coveralls
+  - travis_retry php vendor/bin/coveralls -v
