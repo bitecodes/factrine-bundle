@@ -71,7 +71,7 @@ class FactrineGenerateFilesCommand extends Command
      * @param $bundle
      * @return string
      */
-    protected function getDirectory($bundle)
+    protected function getDirectory(Bundle $bundle)
     {
         $path = $bundle->getPath();
         $factoryDir = $path . '/Resources/config/factrine/';

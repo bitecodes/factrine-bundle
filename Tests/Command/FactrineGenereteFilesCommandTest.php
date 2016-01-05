@@ -11,6 +11,8 @@ use Fludio\FactrineBundle\Tests\Dummy\TestEntity\User;
 use org\bovigo\vfs\vfsStream;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
+use Symfony\Component\HttpKernel\Bundle\Bundle;
+use Symfony\Component\HttpKernel\Tests\Bundle\BundleTest;
 use Symfony\Component\Yaml\Yaml;
 
 class FactrineGenereteFilesCommandTest extends TestCase
@@ -36,7 +38,7 @@ class FactrineGenereteFilesCommandTest extends TestCase
 
         $cmd
             ->method('getDirectory')
-            ->willReturn(vfsStream::url('root') . '/');
+            ->willReturn(vfsStream::url('root') . '/factrine/');
 
         $application = new Application($kernel);
         $application->add($cmd);
@@ -45,20 +47,40 @@ class FactrineGenereteFilesCommandTest extends TestCase
         $commandTester = new CommandTester($command);
         $commandTester->execute(array('command' => $command->getName()));
 
-        $fi = new FilesystemIterator($root->url(), FilesystemIterator::SKIP_DOTS);
+        $fi = new FilesystemIterator($root->url() . '/factrine', FilesystemIterator::SKIP_DOTS);
 
         $this->assertEquals(10, iterator_count($fi));
-        $this->assertTrue(file_exists($root->url() . '/Address.yml'));
+        $this->assertTrue(file_exists($root->url() . '/factrine/Address.yml'));
 
-        $addressConfig = Yaml::parse(file_get_contents($root->url() . '/Address.yml'));
+        $addressConfig = Yaml::parse(file_get_contents($root->url() . '/factrine/Address.yml'));
 
         $this->assertTrue(key($addressConfig) === Address::class);
         $this->assertTrue(isset($addressConfig[Address::class]['street']));
 
-        $userConfig = Yaml::parse(file_get_contents($root->url() . '/User.yml'));
+        $userConfig = Yaml::parse(file_get_contents($root->url() . '/factrine/User.yml'));
 
         $this->assertTrue(isset($userConfig[User::class]['address']));
         $this->assertEquals(Address::class, $userConfig[User::class]['address']);
+    }
 
+    /** @test */
+    public function it_returns_a_config_directory_for_a_bundle()
+    {
+        $bundle = $this->getMockForAbstractClass(Bundle::class, [], '', true, true, true, ['getPath']);
+        $bundle
+            ->expects($this->once())
+            ->method('getPath')
+            ->willReturn('/some/path');
+
+        $command = $this->getMockBuilder(FactrineGenerateFilesCommand::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $refl = new \ReflectionClass($command);
+        $method = $refl->getMethod('getDirectory');
+        $method->setAccessible(true);
+        $dir = $method->invokeArgs($command, [$bundle]);
+
+        $this->assertEquals('/some/path/Resources/config/factrine/', $dir);
     }
 }
