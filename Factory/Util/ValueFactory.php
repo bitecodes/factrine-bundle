@@ -38,16 +38,16 @@ class ValueFactory
     {
         $data = [];
 
-        if(!isset($this->config[$entity])) {
+        if (!isset($this->config[$entity])) {
             return $data;
         }
 
-        foreach($this->config[$entity] as $field => $expression) {
-            if($parent == $expression) {
+        foreach ($this->config[$entity] as $field => $expression) {
+            if ($parent == $expression) {
                 continue;
             }
 
-            if(is_string($expression) && class_exists($expression)) {
+            if (is_string($expression) && class_exists($expression)) {
                 $data[$field] = $this->getAllValues($expression, $entity);
             } else {
                 $data[$field] = $this->getValue($entity, $field);
@@ -69,9 +69,9 @@ class ValueFactory
     {
         $data = $this->config[$entity][$field];
 
-        if(is_string($data)) {
+        if (is_string($data)) {
             $data = $this->evaluateExpression($data);
-        } elseif(is_array($data)) {
+        } elseif (is_array($data)) {
             $data = $this->evaluateExpressionsInArray($data);
         }
 
@@ -108,7 +108,7 @@ class ValueFactory
     {
         $providerValues = [];
 
-        foreach($dataProviders as $provider) {
+        foreach ($dataProviders as $provider) {
             $providerValues[$provider->getCallableName()] = $provider->getProviderInstance();
         }
 

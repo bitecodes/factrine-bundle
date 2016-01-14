@@ -9,6 +9,7 @@ use Fludio\FactrineBundle\Factory\ConfigProvider\ConfigGenerator;
 use Fludio\FactrineBundle\Tests\Dummy\app\AppKernel;
 use Fludio\FactrineBundle\Tests\Dummy\TestCase;
 use Fludio\FactrineBundle\Tests\Dummy\TestEntity\Address;
+use Fludio\FactrineBundle\Tests\Dummy\TestEntity\Hobby;
 
 class ConfigGeneratorTest extends TestCase
 {
@@ -39,7 +40,15 @@ class ConfigGeneratorTest extends TestCase
         $configs = $this->generator->generate();
 
         $this->assertEquals(11, count($configs));
-        $this->assertArrayHasKey(Address::class, $configs);
-        $this->assertEquals(4, count($configs[Address::class]));
+        $this->assertArrayHasKey(Hobby::class, $configs);
+        $this->assertEquals(3, count($configs[Hobby::class]));
+    }
+
+    /** @test */
+    public function it_generates_an_entry_for_id_fields_that_are_not_auto_generated()
+    {
+        $configs = $this->generator->generate();
+
+        $this->assertArrayHasKey('id', $configs[Address::class]);
     }
 }

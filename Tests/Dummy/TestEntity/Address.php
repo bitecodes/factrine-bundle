@@ -15,7 +15,6 @@ class Address
      *
      * @Column(name="id", type="integer")
      * @Id
-     * @GeneratedValue(strategy="AUTO")
      */
     private $id;
 
@@ -50,11 +49,22 @@ class Address
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @param int $id
+     * @return $this
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     /**
@@ -73,7 +83,7 @@ class Address
     /**
      * Get street
      *
-     * @return string 
+     * @return string
      */
     public function getStreet()
     {
@@ -96,7 +106,7 @@ class Address
     /**
      * Get city
      *
-     * @return string 
+     * @return string
      */
     public function getCity()
     {
@@ -119,7 +129,7 @@ class Address
     /**
      * Get zip
      *
-     * @return string 
+     * @return string
      */
     public function getZip()
     {

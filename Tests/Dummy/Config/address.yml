@@ -1,4 +1,5 @@
 Fludio\FactrineBundle\Tests\Dummy\TestEntity\Address:
+    id: faker.unique.randomDigit
     street: "Main Street 10"
     city: faker.city
     zip: faker.postcode

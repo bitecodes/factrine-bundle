@@ -58,6 +58,14 @@ class FactoryTest extends TestCase
     }
 
     /** @test */
+    public function it_sets_id_field_if_not_auto_generated()
+    {
+        $this->factory->create(Address::class, ['id' => 10]);
+
+        $this->seeInDatabase(Address::class, ['id' => 10]);
+    }
+
+    /** @test */
     public function it_creates_multiple_entities()
     {
         $users = $this->factory->times(3)->make(User::class);
@@ -108,7 +116,7 @@ class FactoryTest extends TestCase
     {
         $values = $this->factory->values(User::class);
 
-        $this->assertEquals(4, count($values['address']));
+        $this->assertEquals(5, count($values['address']));
         $this->assertNotNull($values['address']['street']);
     }
 
