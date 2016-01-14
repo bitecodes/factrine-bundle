@@ -37,8 +37,8 @@ class ConfigGeneratorTest extends TestCase
     public function it_generates_an_array_of_configs_for_all_entities()
     {
         $configs = $this->generator->generate();
-        
-        $this->assertEquals(10, count($configs));
+
+        $this->assertEquals(11, count($configs));
         $this->assertArrayHasKey(Address::class, $configs);
         $this->assertEquals(4, count($configs[Address::class]));
     }

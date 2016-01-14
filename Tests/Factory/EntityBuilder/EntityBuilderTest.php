@@ -13,6 +13,7 @@ use Fludio\FactrineBundle\Tests\Dummy\TestEntity\Group;
 use Fludio\FactrineBundle\Tests\Dummy\TestEntity\Hobby;
 use Fludio\FactrineBundle\Tests\Dummy\TestEntity\Job;
 use Fludio\FactrineBundle\Tests\Dummy\TestEntity\Phone;
+use Fludio\FactrineBundle\Tests\Dummy\TestEntity\Treehouse;
 use Fludio\FactrineBundle\Tests\Dummy\TestEntity\User;
 
 /**
@@ -73,7 +74,7 @@ class EntityBuilderTest extends TestCase
 
         $this->assertEquals('Thomas', $user->getFirstName());
     }
-    
+
 
     /** @test */
     public function it_handles_many_to_one_unidirectional()
@@ -156,7 +157,7 @@ class EntityBuilderTest extends TestCase
             'children.name' => 'Basketball',
             'parent.name' => 'Activities'
         ]);
-        
+
 
         $this->assertInstanceOf(Category::class, $category->getChildren()->first());
         $this->assertInstanceOf(Category::class, $category->getParent());
@@ -209,6 +210,16 @@ class EntityBuilderTest extends TestCase
         $this->assertEquals('Abe', $user->getParents()->first()->getFirstName());
         $this->assertEquals('Homer', $user->getFirstName());
         $this->assertEquals('Bart', $user->getChildren()->first()->getFirstName());
+    }
+
+    /** @test */
+    public function it_handles_inheritance_mapping()
+    {
+        $treehouse = $this->builder->createEntity(Treehouse::class, [
+            'treeType' => 'oak'
+        ]);
+
+        $this->assertEquals('oak', $treehouse->getTreeType());
     }
 
     /** @test */
@@ -272,7 +283,7 @@ class EntityBuilderTest extends TestCase
             'apps.0.title' => 'FlappyBird',
             'apps.1.title' => 'Spotify'
         ]);
-        
+
         $this->assertEquals(2, $phone->getApps()->count());
         $this->assertEquals($phone, $phone->getApps()[0]->getPhones()->first());
         $this->assertEquals($phone, $phone->getApps()[1]->getPhones()->first());

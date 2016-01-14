@@ -49,7 +49,7 @@ class FactrineGenereteFilesCommandTest extends TestCase
 
         $fi = new FilesystemIterator($root->url() . '/factrine', FilesystemIterator::SKIP_DOTS);
 
-        $this->assertEquals(10, iterator_count($fi));
+        $this->assertEquals(11, iterator_count($fi));
         $this->assertTrue(file_exists($root->url() . '/factrine/Address.yml'));
 
         $addressConfig = Yaml::parse(file_get_contents($root->url() . '/factrine/Address.yml'));

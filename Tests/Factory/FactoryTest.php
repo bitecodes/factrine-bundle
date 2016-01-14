@@ -8,6 +8,7 @@ use Fludio\FactrineBundle\Tests\Dummy\TestCase;
 use Fludio\FactrineBundle\Tests\Dummy\TestEntity\Address;
 use Fludio\FactrineBundle\Tests\Dummy\TestEntity\App;
 use Fludio\FactrineBundle\Tests\Dummy\TestEntity\Phone;
+use Fludio\FactrineBundle\Tests\Dummy\TestEntity\Treehouse;
 use Fludio\FactrineBundle\Tests\Dummy\TestEntity\User;
 
 class FactoryTest extends TestCase
@@ -45,6 +46,18 @@ class FactoryTest extends TestCase
     }
 
     /** @test */
+    public function it_persists_an_entity_with_inheritance_mapping()
+    {
+        $this->factory->create(Treehouse::class, [
+            'treeType' => 'oak'
+        ]);
+
+        $this->seeInDatabase(Treehouse::class, [
+            'treeType' => 'oak'
+        ]);
+    }
+
+    /** @test */
     public function it_creates_multiple_entities()
     {
         $users = $this->factory->times(3)->make(User::class);
@@ -70,7 +83,7 @@ class FactoryTest extends TestCase
     public function it_returns_fake_data_for_an_entity()
     {
         $values = $this->factory->values(Address::class);
-        
+
         $this->assertNotNull($values['street']);
         $this->assertNotNull($values['city']);
         $this->assertNotNull($values['zip']);
@@ -122,7 +135,7 @@ class FactoryTest extends TestCase
     {
         $user = $this->factory->create(User::class);
         $address = $user->getAddress();
-        
+
         $this->assertNotNull($user->getFirstName());
         $this->assertNotNull($address->getStreet());
         $this->assertNotNull($address->getCity());
@@ -169,7 +182,7 @@ class FactoryTest extends TestCase
         $phone = $this->factory->create(Phone::class, ['apps' => $apps]);
 
         $this->assertEquals(5, $phone->getApps()->count());
-        foreach($phone->getApps() as $app) {
+        foreach ($phone->getApps() as $app) {
             $this->assertInstanceOf(App::class, $app);
         }
     }

@@ -7,6 +7,12 @@ namespace Fludio\FactrineBundle\Tests\Dummy\TestEntity;
  *
  * @Table()
  * @Entity
+ * @InheritanceType("SINGLE_TABLE")
+ * @DiscriminatorColumn(name="type", type="string")
+ * @DiscriminatorMap({
+ *     "house" = "House",
+ *     "treehouse" = "TreeHouse"
+ * })
  */
 class House
 {
