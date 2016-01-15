@@ -2,6 +2,7 @@
 
 namespace Fluido\FactrineBundle\Tests\Factory;
 
+use Doctrine\ORM\Tools\SchemaTool;
 use Fludio\FactrineBundle\Factory\Factory;
 use Fludio\FactrineBundle\Tests\Dummy\app\AppKernel;
 use Fludio\FactrineBundle\Tests\Dummy\TestCase;
@@ -193,5 +194,23 @@ class FactoryTest extends TestCase
         foreach ($phone->getApps() as $app) {
             $this->assertInstanceOf(App::class, $app);
         }
+    }
+
+    /** @test */
+    public function it_allows_to_set_another_entity_manager()
+    {
+        $kernel = new AppKernel('test', true);
+        $kernel->boot();
+
+        $anotherEntityManager = $kernel->getContainer()->get('doctrine.orm.entity_manager');
+
+        $tool = new SchemaTool($anotherEntityManager);
+        $tool->createSchema($anotherEntityManager->getMetadataFactory()->getAllMetadata());
+
+        $this->factory->setEntityManager($anotherEntityManager);
+        $address = $this->factory->create(Address::class);
+
+        $this->assertFalse($this->em->contains($address));
+        $this->assertTrue($anotherEntityManager->contains($address));
     }
 }

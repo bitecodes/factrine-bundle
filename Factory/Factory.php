@@ -2,6 +2,7 @@
 
 namespace Fludio\FactrineBundle\Factory;
 
+use Doctrine\ORM\EntityManager;
 use Fludio\FactrineBundle\Factory\EntityBuilder\EntityBuilder;
 use Fludio\FactrineBundle\Factory\Util\PersistenceHelper;
 use Fludio\FactrineBundle\Factory\Util\ValueFactory;
@@ -54,11 +55,11 @@ class Factory
 
         $dataSet = $this->values($entity, $params);
 
-        if($isSingular) {
+        if ($isSingular) {
             $dataSet = [$dataSet];
         }
 
-        foreach($dataSet as $data) {
+        foreach ($dataSet as $data) {
             $result[] = $this->entityBuilder->createEntity($entity, $data, $callback);
         }
 
@@ -75,8 +76,8 @@ class Factory
     {
         $result = $this->make($entity, $params, $callback);
 
-        if(is_array($result)) {
-            foreach($result as $entity) {
+        if (is_array($result)) {
+            foreach ($result as $entity) {
                 $this->persistenceHelper->persist($entity);
             }
         } else {
@@ -97,7 +98,7 @@ class Factory
         $loops = $this->times;
         $this->times = 1;
 
-        for($i = 1; $i <= $loops; $i++) {
+        for ($i = 1; $i <= $loops; $i++) {
             $fakeValues = $this->valueFactory->getAllValues($entity);
 
             $result[] = array_merge($fakeValues, $params);
@@ -115,5 +116,10 @@ class Factory
         $this->times = $times;
 
         return $this;
+    }
+
+    public function setEntityManager(EntityManager $em)
+    {
+        $this->persistenceHelper->setEntityManager($em);
     }
 }

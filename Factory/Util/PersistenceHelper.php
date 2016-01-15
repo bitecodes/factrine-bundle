@@ -18,12 +18,27 @@ class PersistenceHelper
      */
     protected $accessor;
 
+    /**
+     * PersistenceHelper constructor.
+     * @param EntityManager $em
+     */
     public function __construct(EntityManager $em)
     {
         $this->em = $em;
         $this->accessor = new PropertyAccessor();
     }
 
+    /**
+     * @param EntityManager $em
+     */
+    public function setEntityManager(EntityManager $em)
+    {
+        $this->em = $em;
+    }
+
+    /**
+     * @param $entity
+     */
     public function persist($entity)
     {
         $this->em->clear();
@@ -34,18 +49,21 @@ class PersistenceHelper
         $this->em->flush();
     }
 
+    /**
+     * @param $entity
+     */
     private function persistAllAssociations($entity)
     {
         $meta = $this->em->getClassMetadata(get_class($entity));
 
-        foreach($meta->getAssociationMappings() as $mapping) {
+        foreach ($meta->getAssociationMappings() as $mapping) {
             $child = $this->accessor->getValue($entity, $mapping['fieldName']);
 
-            if(null === $child) {
+            if (null === $child) {
                 continue;
             }
 
-            if($this->isCollection($mapping)) {
+            if ($this->isCollection($mapping)) {
                 $this->persistCollection($child);
             } else {
                 $this->persistEntity($child);
@@ -69,7 +87,7 @@ class PersistenceHelper
     private function persistEntity($entity)
     {
         if ($this->isEntity($entity)) {
-            if(!$this->em->contains($entity)) {
+            if (!$this->em->contains($entity)) {
                 $this->em->persist($entity);
                 $this->persistAllAssociations($entity);
             }
@@ -81,7 +99,7 @@ class PersistenceHelper
      */
     private function persistCollection($collection)
     {
-        foreach($collection as $entity) {
+        foreach ($collection as $entity) {
             $this->persistEntity($entity);
         }
     }
@@ -99,6 +117,6 @@ class PersistenceHelper
                 : get_class($class);
         }
 
-        return ! $this->em->getMetadataFactory()->isTransient($class);
+        return !$this->em->getMetadataFactory()->isTransient($class);
     }
 }
