@@ -3,27 +3,29 @@
 
 namespace Fludio\FactrineBundle\Tests\Dummy\TestEntity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Group
  *
- * @Table()
- * @Entity
+ * @ORM\Table()
+ * @ORM\Entity
  */
 class Group
 {
     /**
      * @var integer
      *
-     * @Column(name="id", type="integer")
-     * @Id
-     * @GeneratedValue(strategy="AUTO")
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
      *
-     * @Column(name="title", type="string")
+     * @ORM\Column(name="title", type="string")
      */
     private $title;
 

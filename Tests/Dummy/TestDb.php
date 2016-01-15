@@ -32,7 +32,7 @@ class TestDb
         $config->setMetadataCacheImpl($cache);
         $config->setQueryCacheImpl($cache);
         $config->setMetadataDriverImpl(
-            $config->newDefaultAnnotationDriver([$annotationPath])
+            $config->newDefaultAnnotationDriver([$annotationPath], false)
         );
         $config->setProxyDir($proxyDir);
         $config->setProxyNamespace($proxyNamespace);
@@ -40,7 +40,7 @@ class TestDb
 
         $this->connectionOptions = array(
             'driver' => 'pdo_sqlite',
-            'path'   => ':memory:'
+            'path' => ':memory:'
         );
 
         $this->doctrineConfig = $config;

@@ -2,47 +2,49 @@
 
 namespace Fludio\FactrineBundle\Tests\Dummy\TestEntity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Address
  *
- * @Table()
- * @Entity
+ * @ORM\Table()
+ * @ORM\Entity
  */
 class Address
 {
     /**
      * @var integer
      *
-     * @Column(name="id", type="integer")
-     * @Id
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
      */
     private $id;
 
     /**
      * @var string
      *
-     * @Column(name="street", type="string", length=255)
+     * @ORM\Column(name="street", type="string", length=255)
      */
     private $street;
 
     /**
      * @var string
      *
-     * @Column(name="city", type="string", length=255)
+     * @ORM\Column(name="city", type="string", length=255)
      */
     private $city;
 
     /**
      * @var string
      *
-     * @Column(name="zip", type="string", length=255)
+     * @ORM\Column(name="zip", type="string", length=255)
      */
     private $zip;
 
     /**
      * @var array
      *
-     * @Column(name="roomes", type="array")
+     * @ORM\Column(name="roomes", type="array")
      */
     private $roomes;
 

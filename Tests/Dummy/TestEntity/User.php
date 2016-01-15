@@ -3,108 +3,110 @@
 namespace Fludio\FactrineBundle\Tests\Dummy\TestEntity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * User
  *
- * @Table()
- * @Entity
+ * @ORM\Table()
+ * @ORM\Entity
  */
 class User
 {
     /**
      * @var integer
      *
-     * @Column(name="id", type="integer")
-     * @Id
-     * @GeneratedValue(strategy="AUTO")
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
      *
-     * @Column(name="firstName", type="string", length=255)
+     * @ORM\Column(name="firstName", type="string", length=255)
      */
     private $firstName;
 
     /**
      * @var string
      *
-     * @Column(name="lastName", type="string", length=255)
+     * @ORM\Column(name="lastName", type="string", length=255)
      */
     private $lastName;
 
     /**
      * @var \DateTime
      *
-     * @Column(name="dob", type="date")
+     * @ORM\Column(name="dob", type="date")
      */
     private $dob;
 
     /**
      * @var Address
      *
-     * @ManyToOne(targetEntity="Address")
-     * @JoinColumn(name="address_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Address")
+     * @ORM\JoinColumn(name="address_id", referencedColumnName="id")
      **/
     private $address;
 
     /**
-     * @OneToMany(targetEntity="Hobby", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Hobby", mappedBy="user")
      **/
     private $hobbies;
 
     /**
-     * @ManyToMany(targetEntity="EmailAddress")
-     * @JoinTable(name="users_email_addresses",
-     *      joinColumns={@JoinColumn(name="user_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@JoinColumn(name="email_id", referencedColumnName="id", unique=true)}
+     * @ORM\ManyToMany(targetEntity="EmailAddress")
+     * @ORM\JoinTable(name="users_email_addresses",
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="email_id", referencedColumnName="id", unique=true)}
      *      )
      */
     private $emailAddresses;
 
     /**
-     * @OneToOne(targetEntity="Phone")
-     * @JoinColumn(name="phone_id", referencedColumnName="id")
+     * @ORM\OneToOne(targetEntity="Phone")
+     * @ORM\JoinColumn(name="phone_id", referencedColumnName="id")
      */
     private $phone;
 
     /**
-     * @OneToOne(targetEntity="Job", mappedBy="user")
+     * @ORM\OneToOne(targetEntity="Job", mappedBy="user")
      */
     private $job;
 
     /**
-     * @OneToOne(targetEntity="User")
-     * @JoinColumn(name="spouse_id", referencedColumnName="id")
+     * @ORM\OneToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="spouse_id", referencedColumnName="id")
      */
     private $spouse;
 
     /**
-     * @ManyToMany(targetEntity="Group")
-     * @JoinTable(name="users_groups",
-     *      joinColumns={@JoinColumn(name="user_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@JoinColumn(name="group_id", referencedColumnName="id")}
+     * @ORM\ManyToMany(targetEntity="Group")
+     * @ORM\JoinTable(name="users_groups",
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
      *      )
      */
     private $groups;
 
     /**
-     * @ManyToMany(targetEntity="User", mappedBy="children")
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="children")
      */
     private $parents;
 
     /**
-     * @ManyToMany(targetEntity="User", inversedBy="parents")
-     * @JoinTable(name="family",
-     *      joinColumns={@JoinColumn(name="user_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@JoinColumn(name="child_id", referencedColumnName="id")}
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="parents")
+     * @ORM\JoinTable(name="family",
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="child_id", referencedColumnName="id")}
      *      )
      */
     private $children;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->hobbies = new ArrayCollection();
         $this->emailAddresses = new ArrayCollection();
         $this->groups = new ArrayCollection();
@@ -115,7 +117,7 @@ class User
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -138,7 +140,7 @@ class User
     /**
      * Get firstName
      *
-     * @return string 
+     * @return string
      */
     public function getFirstName()
     {
@@ -161,7 +163,7 @@ class User
     /**
      * Get lastName
      *
-     * @return string 
+     * @return string
      */
     public function getLastName()
     {
@@ -184,7 +186,7 @@ class User
     /**
      * Get dob
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDob()
     {

@@ -2,47 +2,49 @@
 
 namespace Fludio\FactrineBundle\Tests\Dummy\TestEntity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Hobby
  *
- * @Table()
- * @Entity
+ * @ORM\Table()
+ * @ORM\Entity
  */
 class Hobby
 {
     /**
      * @var integer
      *
-     * @Column(name="id", type="integer")
-     * @Id
-     * @GeneratedValue(strategy="AUTO")
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
      *
-     * @Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
 
     /**
      * @var integer
      *
-     * @Column(name="priority", type="integer")
+     * @ORM\Column(name="priority", type="integer")
      */
     private $priority;
 
     /**
-     * @ManyToOne(targetEntity="User", inversedBy="hobbies")
-     * @JoinColumn(name="user_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="hobbies")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      **/
     private $user;
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -65,7 +67,7 @@ class Hobby
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -88,7 +90,7 @@ class Hobby
     /**
      * Get priority
      *
-     * @return integer 
+     * @return integer
      */
     public function getPriority()
     {

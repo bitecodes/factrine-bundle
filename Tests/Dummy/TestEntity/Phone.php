@@ -2,40 +2,42 @@
 
 
 namespace Fludio\FactrineBundle\Tests\Dummy\TestEntity;
-use Doctrine\Common\Collections\ArrayCollection;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Hobby
  *
- * @Table()
- * @Entity
+ * @ORM\Table()
+ * @ORM\Entity
  */
 class Phone
 {
     /**
      * @var integer
      *
-     * @Column(name="id", type="integer")
-     * @Id
-     * @GeneratedValue(strategy="AUTO")
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
      *
-     * @Column(name="number", type="string", length=255)
+     * @ORM\Column(name="number", type="string", length=255)
      */
     private $number;
 
     /**
-     * @ManyToMany(targetEntity="App", inversedBy="phones")
-     * @JoinTable(name="apps_phones")
+     * @ORM\ManyToMany(targetEntity="App", inversedBy="phones")
+     * @ORM\JoinTable(name="apps_phones")
      */
     private $apps;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->apps = new ArrayCollection();
     }
 

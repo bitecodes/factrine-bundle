@@ -2,14 +2,16 @@
 
 namespace Fludio\FactrineBundle\Tests\Dummy\TestEntity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * House
  *
- * @Table()
- * @Entity
- * @InheritanceType("SINGLE_TABLE")
- * @DiscriminatorColumn(name="type", type="string")
- * @DiscriminatorMap({
+ * @ORM\Table()
+ * @ORM\Entity
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\DiscriminatorColumn(name="type", type="string")
+ * @ORM\DiscriminatorMap({
  *     "house" = "House",
  *     "treehouse" = "TreeHouse"
  * })
@@ -19,9 +21,9 @@ class House
     /**
      * @var integer
      *
-     * @Column(name="id", type="integer")
-     * @Id
-     * @GeneratedValue(strategy="AUTO")
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 

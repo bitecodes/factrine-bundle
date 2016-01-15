@@ -3,33 +3,35 @@
 
 namespace Fludio\FactrineBundle\Tests\Dummy\TestEntity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Hobby
  *
- * @Table()
- * @Entity
+ * @ORM\Table()
+ * @ORM\Entity
  */
 class Job
 {
     /**
      * @var integer
      *
-     * @Column(name="id", type="integer")
-     * @Id
-     * @GeneratedValue(strategy="AUTO")
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
      *
-     * @Column(name="title", type="string", length=255)
+     * @ORM\Column(name="title", type="string", length=255)
      */
     private $title;
 
     /**
-     * @OneToOne(targetEntity="User", inversedBy="job")
-     * @JoinColumn(name="user_id", referencedColumnName="id")
+     * @ORM\OneToOne(targetEntity="User", inversedBy="job")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
 

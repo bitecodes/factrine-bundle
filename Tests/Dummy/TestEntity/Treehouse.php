@@ -2,15 +2,17 @@
 
 namespace Fludio\FactrineBundle\Tests\Dummy\TestEntity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
- * @Entity
+ * @ORM\Entity
  */
 class Treehouse extends House
 {
     /**
      * @var string
      *
-     * @Column(name="tree_type", type="string")
+     * @ORM\Column(name="tree_type", type="string")
      */
     protected $treeType;
 
