@@ -1,15 +1,15 @@
 <?php
 
 
-namespace Fludio\FactrineBundle\Tests\Factory\ConfigProvider;
+namespace BiteCodes\FactrineBundle\Tests\Factory\ConfigProvider;
 
-use Fludio\FactrineBundle\Factory\DataProvider\FakerDataProvider;
-use Fludio\FactrineBundle\Factory\Util\DataGuesser;
-use Fludio\FactrineBundle\Factory\ConfigProvider\ConfigGenerator;
-use Fludio\FactrineBundle\Tests\Dummy\app\AppKernel;
-use Fludio\FactrineBundle\Tests\Dummy\TestCase;
-use Fludio\FactrineBundle\Tests\Dummy\TestEntity\Address;
-use Fludio\FactrineBundle\Tests\Dummy\TestEntity\Hobby;
+use BiteCodes\FactrineBundle\Factory\DataProvider\FakerDataProvider;
+use BiteCodes\FactrineBundle\Factory\Util\DataGuesser;
+use BiteCodes\FactrineBundle\Factory\ConfigProvider\ConfigGenerator;
+use BiteCodes\FactrineBundle\Tests\Dummy\app\AppKernel;
+use BiteCodes\FactrineBundle\Tests\Dummy\TestCase;
+use BiteCodes\FactrineBundle\Tests\Dummy\TestEntity\Address;
+use BiteCodes\FactrineBundle\Tests\Dummy\TestEntity\Hobby;
 
 class ConfigGeneratorTest extends TestCase
 {

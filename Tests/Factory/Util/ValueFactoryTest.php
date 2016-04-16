@@ -1,16 +1,16 @@
 <?php
 
 
-namespace Fludio\FactrineBundle\Tests\Factory\Util;
+namespace BiteCodes\FactrineBundle\Tests\Factory\Util;
 
-use Fludio\FactrineBundle\Factory\ConfigProvider\ConfigLoader;
-use Fludio\FactrineBundle\Factory\ConfigProvider\YamlConfigProvider;
-use Fludio\FactrineBundle\Factory\DataProvider\FakerDataProvider;
-use Fludio\FactrineBundle\Factory\Util\ValueFactory;
-use Fludio\FactrineBundle\Tests\Dummy\TestCase;
-use Fludio\FactrineBundle\Tests\Dummy\TestEntity\Address;
-use Fludio\FactrineBundle\Tests\Dummy\TestEntity\House;
-use Fludio\FactrineBundle\Tests\Dummy\TestEntity\Phone;
+use BiteCodes\FactrineBundle\Factory\ConfigProvider\ConfigLoader;
+use BiteCodes\FactrineBundle\Factory\ConfigProvider\YamlConfigProvider;
+use BiteCodes\FactrineBundle\Factory\DataProvider\FakerDataProvider;
+use BiteCodes\FactrineBundle\Factory\Util\ValueFactory;
+use BiteCodes\FactrineBundle\Tests\Dummy\TestCase;
+use BiteCodes\FactrineBundle\Tests\Dummy\TestEntity\Address;
+use BiteCodes\FactrineBundle\Tests\Dummy\TestEntity\House;
+use BiteCodes\FactrineBundle\Tests\Dummy\TestEntity\Phone;
 
 class ValueFactoryTest extends TestCase
 {

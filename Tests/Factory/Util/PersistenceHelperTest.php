@@ -1,16 +1,16 @@
 <?php
 
 
-namespace Fludio\FactrineBundle\Tests\Factory\Util;
+namespace BiteCodes\FactrineBundle\Tests\Factory\Util;
 
-use Fludio\FactrineBundle\Factory\Util\PersistenceHelper;
-use Fludio\FactrineBundle\Tests\Dummy\TestCase;
-use Fludio\FactrineBundle\Tests\Dummy\TestEntity\App;
-use Fludio\FactrineBundle\Tests\Dummy\TestEntity\Phone;
+use BiteCodes\FactrineBundle\Factory\Util\PersistenceHelper;
+use BiteCodes\FactrineBundle\Tests\Dummy\TestCase;
+use BiteCodes\FactrineBundle\Tests\Dummy\TestEntity\App;
+use BiteCodes\FactrineBundle\Tests\Dummy\TestEntity\Phone;
 
 /**
  * Class PersistanceHelperTest
- * @package Fludio\FactrineBundle\Tests\Factory\Util
+ * @package BiteCodes\FactrineBundle\Tests\Factory\Util
  */
 class PersistenceHelperTest extends TestCase
 {

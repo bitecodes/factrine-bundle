@@ -1,14 +1,14 @@
 <?php
 
-namespace Fludio\FactrineBundle\Tests\Dummy;
+namespace BiteCodes\FactrineBundle\Tests\Dummy;
 
-use Fludio\FactrineBundle\Factory\DataProvider\FakerDataProvider;
-use Fludio\FactrineBundle\Factory\EntityBuilder\EntityBuilder;
-use Fludio\FactrineBundle\Factory\Factory;
-use Fludio\FactrineBundle\Factory\ConfigProvider\ConfigLoader;
-use Fludio\FactrineBundle\Factory\ConfigProvider\YamlConfigProvider;
-use Fludio\FactrineBundle\Factory\Util\PersistenceHelper;
-use Fludio\FactrineBundle\Factory\Util\ValueFactory;
+use BiteCodes\FactrineBundle\Factory\DataProvider\FakerDataProvider;
+use BiteCodes\FactrineBundle\Factory\EntityBuilder\EntityBuilder;
+use BiteCodes\FactrineBundle\Factory\Factory;
+use BiteCodes\FactrineBundle\Factory\ConfigProvider\ConfigLoader;
+use BiteCodes\FactrineBundle\Factory\ConfigProvider\YamlConfigProvider;
+use BiteCodes\FactrineBundle\Factory\Util\PersistenceHelper;
+use BiteCodes\FactrineBundle\Factory\Util\ValueFactory;
 use Doctrine\ORM\EntityManager;
 
 abstract class TestCase extends \PHPUnit_Framework_TestCase
@@ -37,7 +37,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
         $this->testDb = new TestDb(
             $here . '/TestEntity',
             $here . '/TestProxy',
-            'Fludio\FactrineBundle\Tests\Dummy\TestEntity'
+            'BiteCodes\FactrineBundle\Tests\Dummy\TestEntity'
         );
 
         $this->em = $this->testDb->createEntityManager();

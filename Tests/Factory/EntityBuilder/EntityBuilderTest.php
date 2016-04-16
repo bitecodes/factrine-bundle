@@ -1,24 +1,24 @@
 <?php
 
-namespace Fludio\FactrineBundle\Tests\Factory\EntityBuilder;
+namespace BiteCodes\FactrineBundle\Tests\Factory\EntityBuilder;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Fludio\FactrineBundle\Factory\EntityBuilder\EntityBuilder;
-use Fludio\FactrineBundle\Tests\Dummy\TestCase;
-use Fludio\FactrineBundle\Tests\Dummy\TestEntity\Address;
-use Fludio\FactrineBundle\Tests\Dummy\TestEntity\App;
-use Fludio\FactrineBundle\Tests\Dummy\TestEntity\Category;
-use Fludio\FactrineBundle\Tests\Dummy\TestEntity\EmailAddress;
-use Fludio\FactrineBundle\Tests\Dummy\TestEntity\Group;
-use Fludio\FactrineBundle\Tests\Dummy\TestEntity\Hobby;
-use Fludio\FactrineBundle\Tests\Dummy\TestEntity\Job;
-use Fludio\FactrineBundle\Tests\Dummy\TestEntity\Phone;
-use Fludio\FactrineBundle\Tests\Dummy\TestEntity\Treehouse;
-use Fludio\FactrineBundle\Tests\Dummy\TestEntity\User;
+use BiteCodes\FactrineBundle\Factory\EntityBuilder\EntityBuilder;
+use BiteCodes\FactrineBundle\Tests\Dummy\TestCase;
+use BiteCodes\FactrineBundle\Tests\Dummy\TestEntity\Address;
+use BiteCodes\FactrineBundle\Tests\Dummy\TestEntity\App;
+use BiteCodes\FactrineBundle\Tests\Dummy\TestEntity\Category;
+use BiteCodes\FactrineBundle\Tests\Dummy\TestEntity\EmailAddress;
+use BiteCodes\FactrineBundle\Tests\Dummy\TestEntity\Group;
+use BiteCodes\FactrineBundle\Tests\Dummy\TestEntity\Hobby;
+use BiteCodes\FactrineBundle\Tests\Dummy\TestEntity\Job;
+use BiteCodes\FactrineBundle\Tests\Dummy\TestEntity\Phone;
+use BiteCodes\FactrineBundle\Tests\Dummy\TestEntity\Treehouse;
+use BiteCodes\FactrineBundle\Tests\Dummy\TestEntity\User;
 
 /**
  * Class EntityBuilderTest
- * @package Fludio\FactrineBundle\Tests\Factory\EntityBuilder
+ * @package BiteCodes\FactrineBundle\Tests\Factory\EntityBuilder
  */
 class EntityBuilderTest extends TestCase
 {

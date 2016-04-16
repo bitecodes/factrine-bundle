@@ -1,8 +1,8 @@
-Fludio\FactrineBundle\Tests\Dummy\TestEntity\User:
+BiteCodes\FactrineBundle\Tests\Dummy\TestEntity\User:
     firstName: faker.firstName
     lastName: faker.lastName
     email: faker.email
     dob: faker.dateTimeBetween('-50 years', '-20 years')
-    address: Fludio\FactrineBundle\Tests\Dummy\TestEntity\Address
-    hobbies: Fludio\FactrineBundle\Tests\Dummy\TestEntity\Hobby
-    phone: Fludio\FactrineBundle\Tests\Dummy\TestEntity\Phone
+    address: BiteCodes\FactrineBundle\Tests\Dummy\TestEntity\Address
+    hobbies: BiteCodes\FactrineBundle\Tests\Dummy\TestEntity\Hobby
+    phone: BiteCodes\FactrineBundle\Tests\Dummy\TestEntity\Phone

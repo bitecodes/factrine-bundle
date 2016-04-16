@@ -1,19 +1,19 @@
 <?php
 
-namespace Fludio\FactrineBundle\Tests\DependencyInjection;
+namespace BiteCodes\FactrineBundle\Tests\DependencyInjection;
 
-use Fludio\FactrineBundle\DependencyInjection\FludioFactrineExtension;
-use Fludio\FactrineBundle\FludioFactrineBundle;
+use BiteCodes\FactrineBundle\DependencyInjection\BiteCodesFactrineExtension;
+use BiteCodes\FactrineBundle\BiteCodesFactrineBundle;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 
-class FludioFactrineExtensionTest extends AbstractExtensionTestCase
+class BiteCodesFactrineExtensionTest extends AbstractExtensionTestCase
 {
     public function setUp()
     {
         parent::setUp();
 
         $this->setParameter('kernel.bundles', [
-            FludioFactrineBundle::class
+            BiteCodesFactrineBundle::class
         ]);
     }
 
@@ -21,7 +21,7 @@ class FludioFactrineExtensionTest extends AbstractExtensionTestCase
     protected function getContainerExtensions()
     {
         return [
-            new FludioFactrineExtension()
+            new BiteCodesFactrineExtension()
         ];
     }
 

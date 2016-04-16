@@ -1,10 +1,10 @@
 <?php
 
-namespace Fludio\FactrineBundle\Command;
+namespace BiteCodes\FactrineBundle\Command;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\ClassMetadata;
-use Fludio\FactrineBundle\Factory\Factory;
+use BiteCodes\FactrineBundle\Factory\Factory;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\QuestionHelper;
 use Symfony\Component\Console\Helper\SymfonyQuestionHelper;

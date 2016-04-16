@@ -1,9 +1,9 @@
 <?php
 
-namespace Fludio\FactrineBundle\Tests\Factory\ConfigProvider;
+namespace BiteCodes\FactrineBundle\Tests\Factory\ConfigProvider;
 
-use Fludio\FactrineBundle\Factory\ConfigProvider\ConfigLoader;
-use Fludio\FactrineBundle\Factory\ConfigProvider\YamlConfigProvider;
+use BiteCodes\FactrineBundle\Factory\ConfigProvider\ConfigLoader;
+use BiteCodes\FactrineBundle\Factory\ConfigProvider\YamlConfigProvider;
 
 class YamlConfigProviderTest extends \PHPUnit_Framework_TestCase
 {

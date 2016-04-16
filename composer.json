@@ -1,5 +1,5 @@
 {
-  "name": "fludio/factrine-bundle",
+  "name": "bitecodes/factrine-bundle",
   "type": "symfony-bundle",
   "description": "An entity factory for Doctrine2 and Symfony2",
   "license": "MIT",
@@ -32,8 +32,14 @@
   },
   "autoload": {
     "psr-0": {
-      "Fludio\\FactrineBundle\\": ""
+      "BiteCodes\\FactrineBundle\\": ""
     }
   },
-  "target-dir": "Fludio/FactrineBundle"
+  "target-dir": "BiteCodes/FactrineBundle",
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/bitecodes/test-bundle.git"
+    }
+  ]
 }

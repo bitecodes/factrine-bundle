@@ -1,13 +1,13 @@
 <?php
 
-namespace Fludio\FactrineBundle\Tests\Command;
+namespace BiteCodes\FactrineBundle\Tests\Command;
 
 use FilesystemIterator;
-use Fludio\FactrineBundle\Command\FactrineGenerateFilesCommand;
-use Fludio\FactrineBundle\Tests\Dummy\app\AppKernel;
-use Fludio\FactrineBundle\Tests\Dummy\TestCase;
-use Fludio\FactrineBundle\Tests\Dummy\TestEntity\Address;
-use Fludio\FactrineBundle\Tests\Dummy\TestEntity\User;
+use BiteCodes\FactrineBundle\Command\FactrineGenerateFilesCommand;
+use BiteCodes\FactrineBundle\Tests\Dummy\app\AppKernel;
+use BiteCodes\FactrineBundle\Tests\Dummy\TestCase;
+use BiteCodes\FactrineBundle\Tests\Dummy\TestEntity\Address;
+use BiteCodes\FactrineBundle\Tests\Dummy\TestEntity\User;
 use org\bovigo\vfs\vfsStream;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;

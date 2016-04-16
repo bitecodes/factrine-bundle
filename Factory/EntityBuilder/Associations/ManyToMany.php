@@ -1,6 +1,6 @@
 <?php
 
-namespace Fludio\FactrineBundle\Factory\EntityBuilder\Associations;
+namespace BiteCodes\FactrineBundle\Factory\EntityBuilder\Associations;
 
 class ManyToMany extends AbstractAssociation
 {
@@ -10,10 +10,10 @@ class ManyToMany extends AbstractAssociation
         $mapping = $this->meta->getAssociationMapping($this->association);
         $assocClass = $this->meta->getAssociationTargetClass($this->association);
 
-        if($data === false) {
+        if ($data === false) {
             return;
         } elseif (!$data instanceof $assocClass) {
-            if(null === $mapping['mappedBy']) {
+            if (null === $mapping['mappedBy']) {
                 $data[$mapping['inversedBy']] = $this->instance;
                 $data[$mapping['fieldName']] = false;
             } else {
@@ -37,7 +37,7 @@ class ManyToMany extends AbstractAssociation
         $data = $this->params->get($this->association);
         $assocClass = $this->meta->getAssociationTargetClass($this->association);
 
-        if(!$data instanceof $assocClass) {
+        if (!$data instanceof $assocClass) {
             $entity = $this->entityBuilder->createEntity($assocClass, $data);
         } else {
             $entity = $data;
@@ -56,7 +56,7 @@ class ManyToMany extends AbstractAssociation
         $mapping = $this->meta->getAssociationMapping($this->association);
         $assocClass = $this->meta->getAssociationTargetClass($this->association);
 
-        if(!$data instanceof $assocClass) {
+        if (!$data instanceof $assocClass) {
             $field = (null === $mapping['mappedBy']) ? $mapping['inversedBy'] : $mapping['mappedBy'];
             $data[$field] = $this->instance;
             $entity = $this->entityBuilder->createEntity($assocClass, $data);
@@ -77,6 +77,9 @@ class ManyToMany extends AbstractAssociation
             $this->instance,
             $this->association
         );
+
+//        var_dump($entity->getId());
+//        die();
 
         $collection[] = $entity;
 

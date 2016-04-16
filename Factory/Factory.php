@@ -1,11 +1,11 @@
 <?php
 
-namespace Fludio\FactrineBundle\Factory;
+namespace BiteCodes\FactrineBundle\Factory;
 
 use Doctrine\ORM\EntityManager;
-use Fludio\FactrineBundle\Factory\EntityBuilder\EntityBuilder;
-use Fludio\FactrineBundle\Factory\Util\PersistenceHelper;
-use Fludio\FactrineBundle\Factory\Util\ValueFactory;
+use BiteCodes\FactrineBundle\Factory\EntityBuilder\EntityBuilder;
+use BiteCodes\FactrineBundle\Factory\Util\PersistenceHelper;
+use BiteCodes\FactrineBundle\Factory\Util\ValueFactory;
 
 class Factory
 {

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Fludio\FactrineBundle\Factory\ConfigProvider;
+namespace BiteCodes\FactrineBundle\Factory\ConfigProvider;
 
 use Symfony\Component\Yaml\Parser;
 

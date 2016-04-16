@@ -1,12 +1,12 @@
 <?php
 
-namespace Fludio\FactrineBundle\Tests\Command;
+namespace BiteCodes\FactrineBundle\Tests\Command;
 
-use Fludio\FactrineBundle\Command\FactrineSeedEntityCommand;
-use Fludio\FactrineBundle\Tests\Dummy\TestCase;
-use Fludio\FactrineBundle\Tests\Dummy\TestEntity\App;
-use Fludio\FactrineBundle\Tests\Dummy\TestEntity\Hobby;
-use Fludio\FactrineBundle\Tests\Dummy\TestEntity\Phone;
+use BiteCodes\FactrineBundle\Command\FactrineSeedEntityCommand;
+use BiteCodes\FactrineBundle\Tests\Dummy\TestCase;
+use BiteCodes\FactrineBundle\Tests\Dummy\TestEntity\App;
+use BiteCodes\FactrineBundle\Tests\Dummy\TestEntity\Hobby;
+use BiteCodes\FactrineBundle\Tests\Dummy\TestEntity\Phone;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\SymfonyQuestionHelper;

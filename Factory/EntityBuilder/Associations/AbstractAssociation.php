@@ -1,11 +1,11 @@
 <?php
 
 
-namespace Fludio\FactrineBundle\Factory\EntityBuilder\Associations;
+namespace BiteCodes\FactrineBundle\Factory\EntityBuilder\Associations;
 
 use Dflydev\DotAccessData\Data;
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
-use Fludio\FactrineBundle\Factory\EntityBuilder\EntityBuilder;
+use BiteCodes\FactrineBundle\Factory\EntityBuilder\EntityBuilder;
 use Symfony\Component\PropertyAccess\PropertyAccessor;
 
 abstract class AbstractAssociation

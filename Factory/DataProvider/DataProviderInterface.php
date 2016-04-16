@@ -1,6 +1,6 @@
 <?php
 
-namespace Fludio\FactrineBundle\Factory\DataProvider;
+namespace BiteCodes\FactrineBundle\Factory\DataProvider;
 
 interface DataProviderInterface
 {

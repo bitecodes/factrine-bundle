@@ -1,9 +1,9 @@
 <?php
 
 
-namespace Fludio\FactrineBundle\Factory\Util;
+namespace BiteCodes\FactrineBundle\Factory\Util;
 
-use Fludio\FactrineBundle\Factory\DataProvider\FakerDataProvider;
+use BiteCodes\FactrineBundle\Factory\DataProvider\FakerDataProvider;
 
 class DataGuesser
 {

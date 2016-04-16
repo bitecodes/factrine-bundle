@@ -1,5 +1,5 @@
 imports:
-    - { resource: '@FludioFactrineBundle/Resources/config/services.yml' }
+    - { resource: '@BiteCodesFactrineBundle/Resources/config/services.yml' }
 
 framework:
     secret: "DirtySecret"
@@ -19,5 +19,5 @@ doctrine:
                 mapping: true
                 type: annotation
                 dir: %kernel.root_dir%/../TestEntity
-                prefix: Fludio\FactrineBundle\Tests\Dummy\TestEntity
+                prefix: BiteCodes\FactrineBundle\Tests\Dummy\TestEntity
                 is_bundle: false

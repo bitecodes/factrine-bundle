@@ -1,8 +1,8 @@
 <?php
 
-namespace Fludio\FactrineBundle\Seeder;
+namespace BiteCodes\FactrineBundle\Seeder;
 
-use Fludio\FactrineBundle\Factory\Factory;
+use BiteCodes\FactrineBundle\Factory\Factory;
 use Symfony\Component\DependencyInjection\ContainerAware;
 
 abstract class Seeder extends ContainerAware

@@ -1,6 +1,6 @@
 <?php
 
-namespace Fludio\FactrineBundle\Factory\Util;
+namespace BiteCodes\FactrineBundle\Factory\Util;
 
 use Doctrine\Common\Persistence\Proxy;
 use Doctrine\ORM\EntityManager;
@@ -41,7 +41,7 @@ class PersistenceHelper
      */
     public function persist($entity)
     {
-        $this->em->clear();
+//        $this->em->clear();
 
         $this->em->persist($entity);
         $this->persistAllAssociations($entity);

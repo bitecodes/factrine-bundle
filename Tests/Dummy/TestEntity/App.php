@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Fludio\FactrineBundle\Tests\Dummy\TestEntity;
+namespace BiteCodes\FactrineBundle\Tests\Dummy\TestEntity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -31,6 +31,16 @@ class App
     private $title;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Phone", mappedBy="apps")
+     */
+    private $phones;
+
+    public function __construct()
+    {
+        $this->phones = new ArrayCollection();
+    }
+
+    /**
      * @return int
      */
     public function getId()
@@ -55,15 +65,6 @@ class App
         $this->title = $title;
 
         return $this;
-    }
-
-    /**
-     * @ORM\ManyToMany(targetEntity="Phone", mappedBy="apps")
-     */
-    private $phones;
-
-    public function __construct() {
-        $this->phones = new ArrayCollection();
     }
 
     /**

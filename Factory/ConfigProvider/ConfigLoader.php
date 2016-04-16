@@ -1,6 +1,6 @@
 <?php
 
-namespace Fludio\FactrineBundle\Factory\ConfigProvider;
+namespace BiteCodes\FactrineBundle\Factory\ConfigProvider;
 
 class ConfigLoader
 {

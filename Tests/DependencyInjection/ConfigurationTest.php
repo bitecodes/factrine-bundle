@@ -1,6 +1,6 @@
 <?php
 
-namespace Fludio\FactrineBundle\Tests\DependencyInjection;
+namespace BiteCodes\FactrineBundle\Tests\DependencyInjection;
 
 use Symfony\Component\Yaml\Parser;
 

@@ -1,21 +1,21 @@
 <?php
 
-namespace Fludio\FactrineBundle\Factory\EntityBuilder;
+namespace BiteCodes\FactrineBundle\Factory\EntityBuilder;
 
 use Dflydev\DotAccessData\Data;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
-use Fludio\FactrineBundle\Factory\EntityBuilder\Associations\ManyToMany;
-use Fludio\FactrineBundle\Factory\EntityBuilder\Associations\ManyToOne;
-use Fludio\FactrineBundle\Factory\EntityBuilder\Associations\OneToMany;
-use Fludio\FactrineBundle\Factory\EntityBuilder\Associations\OneToOne;
+use BiteCodes\FactrineBundle\Factory\EntityBuilder\Associations\ManyToMany;
+use BiteCodes\FactrineBundle\Factory\EntityBuilder\Associations\ManyToOne;
+use BiteCodes\FactrineBundle\Factory\EntityBuilder\Associations\OneToMany;
+use BiteCodes\FactrineBundle\Factory\EntityBuilder\Associations\OneToOne;
 use Symfony\Component\PropertyAccess\PropertyAccessor;
 
 /**
  * Class EntityBuilder
- * @package Fludio\FactoryBundle\Factory\Util
+ * @package BiteCodes\FactoryBundle\Factory\Util
  */
 class EntityBuilder
 {

@@ -1,12 +1,12 @@
 <?php
 
-namespace Fludio\FactrineBundle\Factory\ConfigProvider;
+namespace BiteCodes\FactrineBundle\Factory\ConfigProvider;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
-use Fludio\FactrineBundle\Factory\Util\DataGuesser;
-use Fludio\FactrineBundle\Tests\Dummy\TestEntity\User;
+use BiteCodes\FactrineBundle\Factory\Util\DataGuesser;
+use BiteCodes\FactrineBundle\Tests\Dummy\TestEntity\User;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\HttpKernel\Kernel;
 

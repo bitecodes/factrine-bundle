@@ -1,8 +1,8 @@
 <?php
 
-namespace Fludio\FactrineBundle\Command;
+namespace BiteCodes\FactrineBundle\Command;
 
-use Fludio\FactrineBundle\Factory\Factory;
+use BiteCodes\FactrineBundle\Factory\Factory;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

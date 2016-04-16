@@ -1,6 +1,6 @@
 <?php
 
-namespace Fludio\FactrineBundle\Tests\Dummy;
+namespace BiteCodes\FactrineBundle\Tests\Dummy;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\SchemaTool;

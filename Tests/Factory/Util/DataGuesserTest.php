@@ -1,11 +1,11 @@
 <?php
 
 
-namespace Fludio\FactrineBundle\Tests\Factory\Util;
+namespace BiteCodes\FactrineBundle\Tests\Factory\Util;
 
 
-use Fludio\FactrineBundle\Factory\DataProvider\FakerDataProvider;
-use Fludio\FactrineBundle\Factory\Util\DataGuesser;
+use BiteCodes\FactrineBundle\Factory\DataProvider\FakerDataProvider;
+use BiteCodes\FactrineBundle\Factory\Util\DataGuesser;
 
 class DataGuesserTest extends \PHPUnit_Framework_TestCase
 {

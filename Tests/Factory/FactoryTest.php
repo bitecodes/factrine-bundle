@@ -1,16 +1,16 @@
 <?php
 
-namespace Fluido\FactrineBundle\Tests\Factory;
+namespace BiteCodes\FactrineBundle\Tests\Factory;
 
 use Doctrine\ORM\Tools\SchemaTool;
-use Fludio\FactrineBundle\Factory\Factory;
-use Fludio\FactrineBundle\Tests\Dummy\app\AppKernel;
-use Fludio\FactrineBundle\Tests\Dummy\TestCase;
-use Fludio\FactrineBundle\Tests\Dummy\TestEntity\Address;
-use Fludio\FactrineBundle\Tests\Dummy\TestEntity\App;
-use Fludio\FactrineBundle\Tests\Dummy\TestEntity\Phone;
-use Fludio\FactrineBundle\Tests\Dummy\TestEntity\Treehouse;
-use Fludio\FactrineBundle\Tests\Dummy\TestEntity\User;
+use BiteCodes\FactrineBundle\Factory\Factory;
+use BiteCodes\FactrineBundle\Tests\Dummy\app\AppKernel;
+use BiteCodes\FactrineBundle\Tests\Dummy\TestCase;
+use BiteCodes\FactrineBundle\Tests\Dummy\TestEntity\Address;
+use BiteCodes\FactrineBundle\Tests\Dummy\TestEntity\App;
+use BiteCodes\FactrineBundle\Tests\Dummy\TestEntity\Phone;
+use BiteCodes\FactrineBundle\Tests\Dummy\TestEntity\Treehouse;
+use BiteCodes\FactrineBundle\Tests\Dummy\TestEntity\User;
 
 class FactoryTest extends TestCase
 {
@@ -194,6 +194,36 @@ class FactoryTest extends TestCase
         foreach ($phone->getApps() as $app) {
             $this->assertInstanceOf(App::class, $app);
         }
+    }
+
+    /** @test */
+    public function it_attaches_entities_for_many_to_many_owning_side()
+    {
+        $this->factory->setEntityManager($this->em);
+        $apps = $this->factory->times(3)->create(App::class);
+        $phones = $this->factory->times(3)->create(Phone::class, ['apps' => $apps]);
+
+        $this->em->clear();
+        $firstPhone = $this->em->getRepository(Phone::class)->find($phones[0]->getId());
+        $firstApp = $this->em->getRepository(App::class)->find($apps[0]->getId());
+
+        $this->assertCount(3, $firstPhone->getApps());
+        $this->assertCount(3, $firstApp->getPhones());
+    }
+
+    /** @test */
+    public function it_attaches_entities_for_many_to_many_inverse_side()
+    {
+        $this->factory->setEntityManager($this->em);
+        $phones = $this->factory->times(3)->create(Phone::class);
+        $apps = $this->factory->times(3)->create(App::class, ['phones' => $phones]);
+
+        $this->em->clear();
+        $firstPhone = $this->em->getRepository(Phone::class)->find($phones[0]->getId());
+        $firstApp = $this->em->getRepository(App::class)->find($apps[0]->getId());
+
+        $this->assertCount(3, $firstPhone->getApps());
+        $this->assertCount(3, $firstApp->getPhones());
     }
 
     /** @test */
