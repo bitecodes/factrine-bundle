@@ -30,7 +30,7 @@ class BiteCodesFactrineExtensionTest extends AbstractExtensionTestCase
     {
         $this->load();
 
-        $this->assertServiceArgumentExists('factrine.config_provider.config_loader', 0, []);
+        $this->assertServiceArgumentExists('factrine.config_provider.config_loader', 0);
         $this->assertServiceArgumentExists('factrine.data_provider.faker_data_provider', 0, 'en_US');
     }
 
@@ -44,8 +44,12 @@ class BiteCodesFactrineExtensionTest extends AbstractExtensionTestCase
         $this->assertServiceArgumentExists('factrine.data_provider.faker_data_provider', 0, 'de_DE');
     }
 
-    protected function assertServiceArgumentExists($service, $index, $value)
+    protected function assertServiceArgumentExists($service, $index, $value = null)
     {
-        $this->assertContainerBuilderHasServiceDefinitionWithArgument($service, $index, $value);
+        if ($value) {
+            $this->assertContainerBuilderHasServiceDefinitionWithArgument($service, $index, $value);
+        } else {
+            $this->assertContainerBuilderHasServiceDefinitionWithArgument($service, $index);
+        }
     }
 }

@@ -26,7 +26,7 @@ class BiteCodesFactrineExtension extends Extension
     {
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
-        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yml');
 
         // Auto-Detection
@@ -35,7 +35,7 @@ class BiteCodesFactrineExtension extends Extension
         }
 
         // Locale
-        if($locale = $config['locale']) {
+        if ($locale = $config['locale']) {
             $this->setLocale($container, $locale);
         }
     }
