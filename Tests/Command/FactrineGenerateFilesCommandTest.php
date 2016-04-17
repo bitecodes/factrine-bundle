@@ -15,7 +15,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\HttpKernel\Tests\Bundle\BundleTest;
 use Symfony\Component\Yaml\Yaml;
 
-class FactrineGenereteFilesCommandTest extends TestCase
+class FactrineGenerateFilesCommandTest extends TestCase
 {
     /** @test */
     public function it_generates_config_files()
