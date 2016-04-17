@@ -53,6 +53,7 @@ class FactrineGenerateFilesCommand extends Command
                 $refl = new \ReflectionClass($entity);
 
                 $factoryDir = $this->getDirectory($bundle);
+
                 $file = $factoryDir . $refl->getShortName() . '.yml';
 
                 if (!file_exists($factoryDir)) {
@@ -74,7 +75,6 @@ class FactrineGenerateFilesCommand extends Command
     protected function getDirectory(Bundle $bundle)
     {
         $path = $bundle->getPath();
-        $factoryDir = $path . '/Resources/config/factrine/';
-        return $factoryDir;
+        return $path . '/Resources/config/factrine/';
     }
 }

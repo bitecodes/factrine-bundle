@@ -12,7 +12,6 @@ use org\bovigo\vfs\vfsStream;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
-use Symfony\Component\HttpKernel\Tests\Bundle\BundleTest;
 use Symfony\Component\Yaml\Yaml;
 
 class FactrineGenerateFilesCommandTest extends TestCase
@@ -38,14 +37,13 @@ class FactrineGenerateFilesCommandTest extends TestCase
 
         $cmd
             ->method('getDirectory')
-            ->willReturn(vfsStream::url('root') . '/factrine/');
+            ->willReturn($root->url() . '/factrine/');
 
         $application = new Application($kernel);
         $application->add($cmd);
 
-        $command = $application->find('factrine:generate:files');
-        $commandTester = new CommandTester($command);
-        $commandTester->execute(array('command' => $command->getName()));
+        $commandTester = new CommandTester($cmd);
+        $commandTester->execute(array('command' => $cmd->getName()));
 
         $fi = new FilesystemIterator($root->url() . '/factrine', FilesystemIterator::SKIP_DOTS);
 
