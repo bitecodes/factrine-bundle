@@ -199,6 +199,8 @@ class FactoryTest extends TestCase
     /** @test */
     public function it_attaches_entities_for_many_to_many_owning_side()
     {
+        $this->markTestSkipped('Decide how to handle many-to-many');
+
         $this->factory->setEntityManager($this->em);
         $apps = $this->factory->times(3)->create(App::class);
         $phones = $this->factory->times(3)->create(Phone::class, ['apps' => $apps]);
@@ -214,6 +216,8 @@ class FactoryTest extends TestCase
     /** @test */
     public function it_attaches_entities_for_many_to_many_inverse_side()
     {
+        $this->markTestSkipped('Decide how to handle many-to-many');
+
         $this->factory->setEntityManager($this->em);
         $phones = $this->factory->times(3)->create(Phone::class);
         $apps = $this->factory->times(3)->create(App::class, ['phones' => $phones]);
